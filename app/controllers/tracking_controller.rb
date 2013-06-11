@@ -7,7 +7,9 @@ class TrackingController < ApplicationController
   # before_filter :auth_user
 
   def track
+  end
 
+  def map
   end
 
   def create_item
