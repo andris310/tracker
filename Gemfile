@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'nokogiri'
 gem 'pry'
+gem 'geocoder'
 
 
 # Gems used only for assets and not required
