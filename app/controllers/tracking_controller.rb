@@ -14,12 +14,10 @@ class TrackingController < ApplicationController
     @items = current_user.items
     @items.map do |item|
       if !(item.delivered)
+        item.update_summary
         item.create_detail
       end
     end
-    # item = Item.last
-    # details = Detail.find_all_by_item_id(item.id)
-    # render :json => item
   end
 
   def create_item

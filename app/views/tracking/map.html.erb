@@ -4,6 +4,7 @@
 <div>
   <div id='map'></div>
   <div id='items'>
+
     <div id='item-menu'>
       <ul>
         <li>All</li>
@@ -11,6 +12,7 @@
         <li>In Transit</li>
       </ul>
     </div>
+
     <% @items.each do |i| %>
       <div class='item'>
         <% lu = Detail.find_by_item_id(i.id) %>
@@ -18,7 +20,7 @@
         <p data-lat=<%= lu.latitude %>
            data-lng=<%= lu.longitude %>
            data-address=<%= lu.tracking_detail.split(',')[-2..-1].join() %>
-        <% if (i.tracking_summary.include?('delivered')) %>
+        <% if i.delivered %>
              data-delivered='Delivered'
         <% else %>
              data-delivered='In Transit'
