@@ -26,7 +26,8 @@ $('p').on('click', function() {
   // map.addLayer(marker);
 
   markers = [];
-  $('.item .hidden-data:first p').each(function(index, point){
+  // debugger;
+  $(this).next().next().children().each(function(index, point){
     var pt = $(point);
     var lat = pt.data('lat');
     var lng = pt.data('lng');

@@ -18,8 +18,7 @@
         <span> <%= i.tracking_summary %></span>
 
         <div class='hidden-data'>
-          <% hidden_details = Detail.where(i.id) %>
-          <% binding.pry %>
+          <% hidden_details = (Detail.where('item_id' => i.id)).reverse %>
           <% hidden_details.each do |d| %>
             <p data-lat="<%= d.latitude %>"
                data-lng="<%= d.longitude %>"
