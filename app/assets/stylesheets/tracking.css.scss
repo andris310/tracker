@@ -1,4 +1,23 @@
 #map {
   height: 450px;
-  width: 70%;
+  width: 60%;
+  margin: auto;
+}
+
+#items {
+  margin-top: 1em;
+}
+
+.item {
+  background-color: #CCEBF7;
+  padding: 7px;
+  margin-bottom: 4px;
+  width: 21em;
+}
+
+.item p {
+  cursor: hand;
+  cursor: pointer;
+  margin: .1em;
+  color: #4F5AA8;
 }

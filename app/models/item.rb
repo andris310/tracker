@@ -6,7 +6,7 @@ class Item < ActiveRecord::Base
   has_many :details
 
     def create_detail
-      url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%#{URI.escape(tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"
+      url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%22#{URI.escape(tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"
       doc = Nokogiri::XML(open(url))
       doc.xpath('//TrackDetail').each do |x|
         if (Detail.find_by_tracking_detail(x.text)).nil?
