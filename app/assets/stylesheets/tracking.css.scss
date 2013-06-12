@@ -1,11 +1,62 @@
-#map {
-  height: 450px;
-  width: 60%;
+/*------------------------------------
+              MENU
+------------------------------------*/
+
+nav {
   margin: auto;
+  padding: 0.3em;
+  width: 93%;
+  height: 2.5em;
+  background-color: rgba(255, 255, 255, 0.69);
+  position: relative;
+  z-index: 100;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav li {
+  float: left;
+  margin-left: 2em;
+}
+
+#user_nav {
+  float: right;
+}
+
+
+
+/*------------------------------------
+              MAP
+------------------------------------*/
+
+#map{
+height: 100%;
+left: 0;
+position: fixed !important; /* Acts in pretty much the same way as background-attachment: fixed for an image background. Has to be !important only if you're using the Google Maps API. */
+top: 0;
+width: 100%;
+z-index: 1; }
+
+#item-menu ul {
+  list-style-type: none;
+  height: 1em;
+  padding: .6em;
+  background-color: #FFF;
+}
+
+#item-menu li {
+  float: left;
+  margin-left: .8em;
+  cursor: pointer;
 }
 
 #items {
+  float: right;
+  position: relative;
   margin-top: 1em;
+  z-index: 100;
 }
 
 .item {
@@ -20,4 +71,12 @@
   cursor: pointer;
   margin: .1em;
   color: #4F5AA8;
+}
+
+/*------------------------------------
+              TRACK
+------------------------------------*/
+
+#track {
+  clear: both;
 }

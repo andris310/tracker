@@ -1,7 +1,10 @@
-<h2> Tracking </h2>
+<%= render 'menu' %>
+<div id='track'>
+  <h2> Tracking </h2>
 
-<%= form_tag("/create", method: "post") do %>
-  <%= label_tag(:q, "Track:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Create") %>
-<% end %>
+  <%= form_tag("/create", method: "post") do %>
+    <%= label_tag(:q, "Track:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Create") %>
+  <% end %>
+</div>

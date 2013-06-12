@@ -15,6 +15,10 @@ $('p').on('click', function() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
   });
+  // $(latlng).each(function(index, latlng) {
+  //   debugger;
+  //   map.removeLayer(polyline);
+  // });
   // if(typeof marker != 'undefined') {
   //   map.removeLayer(marker);
   // }
@@ -29,7 +33,6 @@ $('p').on('click', function() {
 
   markers = [];
   latlng = [];
-  // debugger;
   $(this).next().next().children().each(function(index, point){
     var pt = $(point);
     var lat = pt.data('lat');
@@ -37,11 +40,11 @@ $('p').on('click', function() {
     var marker = L.marker([lat, lng]).addTo(map)
           .bindPopup(pt.data('address'))
           .openPopup();
-    // latlng.push([lat, lng]);
+    latlng.push([lat, lng]);
     markers.push(marker);
   });
-  // var polyline = L.polyline(latlng, {color: 'red'}).addTo(map);
-  // map.fitBounds(polyline.getBounds());
+  var polyline = L.polyline(latlng, {color: 'red'}).addTo(map);
+    map.fitBounds(polyline.getBounds());
 });
 
 

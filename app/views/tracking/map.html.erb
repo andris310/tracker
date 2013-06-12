@@ -1,7 +1,16 @@
+<%= render 'menu' %>
+
+
 <div>
-  <h3>Map</h3>
   <div id='map'></div>
   <div id='items'>
+    <div id='item-menu'>
+      <ul>
+        <li>All</li>
+        <li>Delivered</li>
+        <li>In Transit</li>
+      </ul>
+    </div>
     <% @items.each do |i| %>
       <div class='item'>
         <% lu = Detail.find_by_item_id(i.id) %>
