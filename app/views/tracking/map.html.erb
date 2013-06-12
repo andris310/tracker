@@ -16,17 +16,14 @@
     <% @items.each do |i| %>
       <div class='item'>
         <% lu = Detail.find_by_item_id(i.id) %>
-
-        <p data-lat=<%= lu.latitude %>
-           data-lng=<%= lu.longitude %>
-           data-address=<%= lu.tracking_detail.split(',')[-2..-1].join() %>
-        <% if i.delivered %>
-             data-delivered='Delivered'
-        <% else %>
-             data-delivered='In Transit'
-        <% end %>>
-        <%= i.tracking_id %>
-        </p>
+        <% if !lu.nil? %>
+          <p data-lat=<%= lu.latitude %>
+             data-lng=<%= lu.longitude %>
+             data-address=<%= lu.tracking_detail.split(',')[-2..-1].join() %>
+             data-delivered=<%= i.status %>>
+        <% end %>
+            <%= i.tracking_id %>
+          </p>
         <span> <%= i.tracking_summary %></span>
 
         <div class='hidden-data'>
