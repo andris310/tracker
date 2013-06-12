@@ -17,12 +17,13 @@
         </p>
         <span> <%= i.tracking_summary %></span>
 
-        <div class='item-hidden-details'>
+        <div class='hidden-data'>
           <% hidden_details = Detail.where(i.id) %>
+          <% binding.pry %>
           <% hidden_details.each do |d| %>
-            <p data-lat=<%= d.latitude %>
-               data-lng=<%= d.longitude %>
-               data-address=<%= d.tracking_detail.split(',')[-2..-1].join() %>>
+            <p data-lat="<%= d.latitude %>"
+               data-lng="<%= d.longitude %>"
+               data-address="<%= d.tracking_detail.split(',')[-2..-1].join() %>">
             </p>
           <% end %>
         </div>

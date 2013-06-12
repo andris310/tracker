@@ -7,17 +7,33 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 //add a marker in the given location, attach some popup content to it and open the popup
 
-var marker;
-$('p').on('click', function(){
-  if(typeof marker != 'undefined') {
+// var marker;
+var markers = [];
+$('p').on('click', function() {
+  $(markers).each(function(index, marker){
     map.removeLayer(marker);
-  }
-  var element = $(this);
-  var lat = element.data('lat');
-  var lng = element.data('lng');
+  });
+  // if(typeof marker != 'undefined') {
+  //   map.removeLayer(marker);
+  // }
+  // var element = $(this);
+  // var lat = element.data('lat');
+  // var lng = element.data('lng');
 
-  marker = L.marker([lat, lng]).addTo(map)
-                  .bindPopup(element.data('address') + '\n' + element.data('delivered'))
-                  .openPopup();
-  map.addLayer(marker);
+  // marker = L.marker([lat, lng]).addTo(map)
+  //             .bindPopup(element.data('address') + '\n' + element.data('delivered'))
+  //             .openPopup();
+  // map.addLayer(marker);
+
+  markers = [];
+  $('.item .hidden-data:first p').each(function(index, point){
+    var pt = $(point);
+    var lat = pt.data('lat');
+    var lng = pt.data('lng');
+    var marker = L.marker([lat, lng]).addTo(map)
+          .bindPopup(pt.data('address'))
+          .openPopup();
+
+    markers.push(marker);
+  });
 });
