@@ -1,9 +1,22 @@
 require 'pry'
 
 class Item < ActiveRecord::Base
-  attr_accessible :tracking_id, :tracking_summary, :user_id
+  attr_accessible :tracking_id, :tracking_summary, :user_id, :delivered
   belongs_to :user
   has_many :details
+
+    def initialize
+      self.delivered = false
+    end
+    def update_summary
+      if @item.tracking_summary.nil?
+        url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%22#{URI.escape(@item.tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"
+        doc = Nokogiri::XML(open(url))
+        doc.xpath('//TrackInfo').each do |x|
+          @item.tracking_summary = x.xpath("//TrackSummary").text
+        end
+      end
+    end
 
     def create_detail
       url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%22#{URI.escape(tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"

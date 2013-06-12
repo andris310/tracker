@@ -13,8 +13,9 @@ class TrackingController < ApplicationController
   def map
     @items = current_user.items
     @items.map do |item|
-
-      item.create_detail
+      if !(item.delivered)
+        item.create_detail
+      end
     end
     # item = Item.last
     # details = Detail.find_all_by_item_id(item.id)
