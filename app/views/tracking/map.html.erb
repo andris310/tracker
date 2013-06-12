@@ -20,7 +20,10 @@
         <div class='item-hidden-details'>
           <% hidden_details = Detail.where(i.id) %>
           <% hidden_details.each do |d| %>
-
+            <p data-lat=<%= d.latitude %>
+               data-lng=<%= d.longitude %>
+               data-address=<%= d.tracking_detail.split(',')[-2..-1].join() %>>
+            </p>
           <% end %>
         </div>
       </div>
