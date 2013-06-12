@@ -11,7 +11,11 @@ class TrackingController < ApplicationController
   end
 
   def map
-    @items = Item.all
+    @items = current_user.items
+    @items.map do |item|
+
+      item.create_detail
+    end
     # item = Item.last
     # details = Detail.find_all_by_item_id(item.id)
     # render :json => item
@@ -25,15 +29,8 @@ class TrackingController < ApplicationController
       @item.user_id = current_user.id
     end
 
-    if @item.tracking_summary.nil?
-      url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%22#{URI.escape(@item.tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"
-      doc = Nokogiri::XML(open(url))
-      doc.xpath('//TrackInfo').each do |x|
-        @item.tracking_summary = x.xpath("//TrackSummary").text
-      end
-    end
+    @item.update_summary
     @item.save
     @item.create_detail
   end
-
 end

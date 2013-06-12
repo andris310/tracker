@@ -5,6 +5,7 @@
     <% @items.each do |i| %>
       <div class='item'>
         <% lu = Detail.find_by_item_id(i.id) %>
+
         <p data-lat=<%= lu.latitude %>
            data-lng=<%= lu.longitude %>
            data-address=<%= lu.tracking_detail.split(',')[-2..-1].join() %>

@@ -17,7 +17,11 @@ class Item < ActiveRecord::Base
           geodata = Geocoder.search(address)
           detail.latitude = geodata[0].latitude
           detail.longitude = geodata[0].longitude
-          detail.save
+
+          if !(detail.tracking_detail.include?('Electronic Shipping Info Received'))
+            detail.save
+          end
+
         end
       end
     end

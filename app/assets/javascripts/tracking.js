@@ -1,3 +1,4 @@
+
 var map = L.map('map').setView([38.737, -93.923], 4);
 
 // add an OpenStreetMap tile layer
@@ -9,6 +10,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 // var marker;
 var markers = [];
+var latlng = [];
 $('p').on('click', function() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
@@ -26,6 +28,7 @@ $('p').on('click', function() {
   // map.addLayer(marker);
 
   markers = [];
+  latlng = [];
   // debugger;
   $(this).next().next().children().each(function(index, point){
     var pt = $(point);
@@ -34,7 +37,11 @@ $('p').on('click', function() {
     var marker = L.marker([lat, lng]).addTo(map)
           .bindPopup(pt.data('address'))
           .openPopup();
-
+    // latlng.push([lat, lng]);
     markers.push(marker);
   });
+  // var polyline = L.polyline(latlng, {color: 'red'}).addTo(map);
+  // map.fitBounds(polyline.getBounds());
 });
+
+
