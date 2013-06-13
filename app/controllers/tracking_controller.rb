@@ -6,29 +6,26 @@ class TrackingController < ApplicationController
 
   # before_filter :auth_user
 
-
   def track
+  end
+
+  def list_in_transit
+    @items = Item.where(:user_id => current_user, :status => "In Transit")
+    run_update(@items)
+    render :json => @items.to_json
   end
 
   def list_delivered
     @items = Item.where(:user_id => current_user, :delivered => true)
-    @items.map do |item|
-      if !(item.delivered)
-        item.update_summary
-        item.create_detail
-      end
-    end
+    run_update(@items)
+    render :json => @items.to_json
   end
 
   def map
     # @items = current_user.items
     @items = Item.where(:user_id => current_user, :delivered => true)
-    @items.map do |item|
-      if !(item.delivered)
-        item.update_summary
-        item.create_detail
-      end
-    end
+    run_update(@items)
+    # render :json => @items.to_json
   end
 
   def create_item
@@ -44,5 +41,15 @@ class TrackingController < ApplicationController
     @item.create_detail
 
     render :json => @item.to_json
+  end
+
+  private
+    def run_update items_to_update
+    items_to_update.map do |item|
+      if !(item.delivered)
+        item.update_summary
+        item.create_detail
+      end
+    end
   end
 end

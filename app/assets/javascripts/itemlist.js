@@ -1,8 +1,24 @@
 $(document).ready(function() {
+
   $('#track').hide();
+
   $('#add-number').on('click', function() {
     $('#track').toggle();
-    // $('#track').hide('slide', {direction:'right'},1000);
+  });
+
+  $.ajax({
+    url: '/delivered',
+    method: 'get',
+    dataType: 'json',
+    success: function(results) {
+      var list = $('#item-list');
+      // debugger;
+      $(results).each(function(index, result) {
+        var num = result['tracking_id'];
+        var sumarry = result['tracking_summary'];
+        var delivered = result['status'];
+      });
+    }
   });
 
   $('#new-tracking').on('submit', function(event) {
@@ -16,5 +32,6 @@ $(document).ready(function() {
       dataType: 'json'
     });
   });
+
 
 });
