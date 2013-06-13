@@ -10,15 +10,15 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 // var marker;
 var markers = [];
-var latlng = [];
+var latlngs = [];
+var polyline;
 $('p').on('click', function() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
   });
-  // $(latlng).each(function(index, latlng) {
-  //   debugger;
-  //   map.removeLayer(polyline);
-  // });
+  $(latlngs).each(function(index, latlng) {
+    map.removeLayer(polyline);
+  });
   // if(typeof marker != 'undefined') {
   //   map.removeLayer(marker);
   // }
@@ -32,19 +32,19 @@ $('p').on('click', function() {
   // map.addLayer(marker);
 
   markers = [];
-  latlng = [];
+  latlngs = [];
   $(this).next().next().children().each(function(index, point){
     var pt = $(point);
     var lat = pt.data('lat');
     var lng = pt.data('lng');
     var marker = L.marker([lat, lng]).addTo(map)
-          .bindPopup(pt.data('address'))
+          .bindPopup(pt.data('address') + '\n' + pt.data('delivered'))
           .openPopup();
-    latlng.push([lat, lng]);
+    latlngs.push([lat, lng]);
     markers.push(marker);
   });
-  var polyline = L.polyline(latlng, {color: 'red'}).addTo(map);
-    map.fitBounds(polyline.getBounds());
+  polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+    // map.fitBounds(polyline.getBounds());
 });
 
 
