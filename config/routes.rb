@@ -8,6 +8,7 @@ Tracker::Application.routes.draw do
   get '/track', to: 'tracking#track'
   get '/map', to: 'tracking#map'
   post '/create', to: 'tracking#create_item'
+  get '/delivered', to: 'tracking#list_delivered'
 
 
 end

@@ -11,11 +11,18 @@ class TrackingController < ApplicationController
   end
 
   def list_delivered
-
+    @items = Item.where(:user_id => current_user, :delivered => true)
+    @items.map do |item|
+      if !(item.delivered)
+        item.update_summary
+        item.create_detail
+      end
+    end
   end
 
   def map
-    @items = current_user.items
+    # @items = current_user.items
+    @items = Item.where(:user_id => current_user, :delivered => true)
     @items.map do |item|
       if !(item.delivered)
         item.update_summary
