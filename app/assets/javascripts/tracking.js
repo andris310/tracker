@@ -19,17 +19,6 @@ $('p').on('click', function() {
   $(latlngs).each(function(index, latlng) {
     map.removeLayer(polyline);
   });
-  // if(typeof marker != 'undefined') {
-  //   map.removeLayer(marker);
-  // }
-  // var element = $(this);
-  // var lat = element.data('lat');
-  // var lng = element.data('lng');
-
-  // marker = L.marker([lat, lng]).addTo(map)
-  //             .bindPopup(element.data('address') + '\n' + element.data('delivered'))
-  //             .openPopup();
-  // map.addLayer(marker);
 
   markers = [];
   latlngs = [];

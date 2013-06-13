@@ -1,8 +1,9 @@
 <nav>
   <ul>
     <li><a href='/map'>Map</a></li>
-    <li><a href='/track'>Add Tr Nr</a></li>
+    <li id='add-number'><a>Add Tr Nr</a></li>
   </ul>
+  <%= render 'track' %>
   <div id="user_nav">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?

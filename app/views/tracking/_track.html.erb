@@ -1,0 +1,7 @@
+
+<div id='track'>
+  <%= form_tag("/create", method: "post", id: "new-tracking") do %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Create") %>
+  <% end %>
+</div>

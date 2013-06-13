@@ -10,6 +10,10 @@ class TrackingController < ApplicationController
   def track
   end
 
+  def list_delivered
+
+  end
+
   def map
     @items = current_user.items
     @items.map do |item|
@@ -31,5 +35,7 @@ class TrackingController < ApplicationController
     @item.update_summary
     @item.save
     @item.create_detail
+
+    render :json => @item.to_json
   end
 end

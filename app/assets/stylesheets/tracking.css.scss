@@ -25,6 +25,10 @@ nav li {
   float: right;
 }
 
+#add-number {
+  cursor: pointer;
+}
+
 
 
 /*------------------------------------
@@ -83,5 +87,7 @@ z-index: 1; }
 ------------------------------------*/
 
 #track {
-  clear: both;
+  width: 15em;
+  float: left;
+  margin-left: 2em;
 }
