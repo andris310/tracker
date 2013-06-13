@@ -12,13 +12,14 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 var markers = [];
 var latlngs = [];
 var polyline;
-$('p').on('click', function() {
+$('#item-list').on('click', 'p', function() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
   });
   $(latlngs).each(function(index, latlng) {
     map.removeLayer(polyline);
   });
+
 
   markers = [];
   latlngs = [];
