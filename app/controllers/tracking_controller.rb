@@ -27,8 +27,9 @@ class TrackingController < ApplicationController
   end
 
   def item_details
-    hidden_details = (Detail.where('item_id' => i.id)).reverse
-    # render :json =>
+    id = params[:q]
+    hidden_details = (Detail.where('item_id' => id)).reverse
+    render :json => hidden_details.to_json
   end
 
   def map

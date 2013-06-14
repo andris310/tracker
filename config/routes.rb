@@ -11,6 +11,7 @@ Tracker::Application.routes.draw do
   get '/delivered', to: 'tracking#list_delivered'
   get '/in-transit', to: 'tracking#list_in_transit'
   get '/all', to: 'tracking#list_all'
+  get '/details', to: 'tracking#item_details'
 
 
 end

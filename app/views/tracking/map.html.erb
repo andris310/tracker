@@ -1,9 +1,12 @@
 <%= render 'menu' %>
 
-
 <div>
   <div id='map'></div>
   <div id='items'>
+
+      <div class="spinner" style="display: none;">
+        <%= image_tag("loader.gif") %>
+      </div>
 
     <div id='item-menu'>
       <ul>
@@ -14,9 +17,6 @@
     </div>
 
     <div id='item-list'>
-      <div class="spinner" style="display: none;">
-        <%= image_tag("loader.gif") %>
-      </div>
 
     </div>
   </div>

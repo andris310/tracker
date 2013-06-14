@@ -1,3 +1,4 @@
+var timer;
 
 function getItems(link) {
   $.ajax({
@@ -5,46 +6,15 @@ function getItems(link) {
     method: 'get',
     dataType: 'json',
     beforeSend: function () {
-        timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
-      },
+      timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
+    },
     complete: function () {
-        clearTimeout(timer);
-        $('.spinner').fadeOut();
-      },
+      clearTimeout(timer);
+      $('.spinner').fadeOut();
+    },
     success: function(results) {
       var list = $('#item-list');
       list.html('');
-      $(results).each(function(index, result) {
-        var num = result['tracking_id'];
-        var summary = result['tracking_summary'];
-        var delivered = result['status'];
-        var item = $('<div class="item"></div>');
-        list.append(item);
-        item.append($('<p>' + num + '</p>'));
-        item.append($('<span>' + summary + '</spna>'));
-      });
-    }
-  });
-}
-
-
-$(document).ready(function() {
-
-  var timer;
-// Load 'Delivered' Items in to the window
-  $.ajax({
-    url: '/delivered',
-    method: 'get',
-    dataType: 'json',
-    beforeSend: function () {
-        timer = setTimeout(function () { $('.spinner').fadeIn(); }, 1000);
-      },
-    complete: function () {
-        clearTimeout(timer);
-        $('.spinner').fadeOut();
-      },
-    success: function(results) {
-      var list = $('#item-list');
       $(results).each(function(index, result) {
         var num = result['tracking_id'];
         var summary = result['tracking_summary'];
@@ -57,14 +27,42 @@ $(document).ready(function() {
       });
     }
   });
+}
+
+
+$(document).ready(function() {
+
+  getItems('/delivered');
 
   $('#in-transit').on('click', function(){getItems('/in-transit')});
   $('#delivered').on('click', function(){getItems('/delivered')});
   $('#all').on('click', function(){getItems('/all')});
 
-  // $('.item').on('click',function() {
-  //   console.log($(this).attr('id'));
-  // });
+  $('#item-list').on('click', '.item',function() {
+    var item = $(this);
+    var id = item.attr('id');
+    $.ajax({
+      url: '/details',
+      method: 'get',
+      data: {q: id},
+      dataType: 'json',
+      success: function(results) {
+        var hidden = $('<div class="hidden-data"></div>');
+        $(results).each(function(index, result) {
+          var lat = (result['latitude']);
+          var lng = (result['longitude']);
+          var address = (result['address']);
+          var p = $('<p></p>');
+          p.data('lat', lat);
+          p.data('lng', lng);
+          p.data('address', address);
+          hidden.append(p);
+        });
+        item.append(hidden);
+        console.log(hidden);
+      }
+    });
+  });
   // AJAX for adding a new tracking number
 
   $('#add-number').on('click', function() {
@@ -82,6 +80,4 @@ $(document).ready(function() {
       dataType: 'json'
     });
   });
-
-
 }); // end of doc ready
