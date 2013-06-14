@@ -41,15 +41,21 @@ class TrackingController < ApplicationController
 
   def create_item
     @item = Item.find_by_tracking_id(params[:q])
-    if @item.nil?
-      @item = Item.new
-      @item.tracking_id = params[:q]
-      @item.user_id = current_user.id
-    end
+    if user_signed_in?
+      if @item.nil?
+        @item = Item.new
+        @item.tracking_id = params[:q]
+        @item.user_id = current_user.id
+      end
 
-    @item.update_summary
-    @item.save
-    @item.create_detail
+      @item.update_summary
+      @item.save
+      @item.create_detail
+    else
+      @item = Item.new
+        @item.tracking_id = params[:q]
+        @item.create_detail
+    end
 
     render :json => @item.to_json
   end

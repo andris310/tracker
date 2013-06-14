@@ -4,7 +4,7 @@ Tracker::Application.routes.draw do
   devise_for :users
 
 
-  root :to => 'tracking#home'
+  root :to => 'tracking#map'
   get '/track', to: 'tracking#track'
   get '/map', to: 'tracking#map'
   post '/create', to: 'tracking#create_item'

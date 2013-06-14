@@ -46,6 +46,13 @@ $(document).ready(function() {
       method: 'get',
       data: {q: id},
       dataType: 'json',
+      beforeSend: function () {
+      timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
+      },
+      complete: function () {
+        clearTimeout(timer);
+        $('.spinner').fadeOut();
+      },
       success: function(results) {
         var hidden = $('<div class="hidden-data"></div>');
         $(results).each(function(index, result) {
@@ -59,7 +66,6 @@ $(document).ready(function() {
           hidden.append(p);
         });
         item.append(hidden);
-        console.log(hidden);
       }
     });
   });
@@ -77,7 +83,14 @@ $(document).ready(function() {
       url: form.attr('action'),
       method: form.attr('method'),
       data: {q: input},
-      dataType: 'json'
+      dataType: 'json',
+      beforeSend: function () {
+      timer = setTimeout(function () { $('.spinner2').fadeIn(); }, 100);
+      },
+      complete: function () {
+        clearTimeout(timer);
+        $('.spinner2').fadeOut();
+      }
     });
   });
 }); // end of doc ready

@@ -33,7 +33,7 @@ class Item < ActiveRecord::Base
           detail.item_id = id
           detail.tracking_detail = x.text
           detail.address = detail.tracking_detail.split(',')[-2..-1].join()
-          geodata = Geocoder.search(address)
+          geodata = Geocoder.search(detail.address)
           detail.latitude = geodata[0].latitude
           detail.longitude = geodata[0].longitude
 

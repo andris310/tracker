@@ -1,20 +1,21 @@
-<%= render 'menu' %>
 
-<div>
-  <div id='map'></div>
+<div id='map'></div>
+<div id='container'>
+  <%= render 'menu' %>
   <div id='items'>
 
       <div class="spinner" style="display: none;">
         <%= image_tag("loader.gif") %>
       </div>
-
-    <div id='item-menu'>
-      <ul>
-        <li id='all'>All</li>
-        <li id='delivered'>Delivered</li>
-        <li id='in-transit'>In Transit</li>
-      </ul>
-    </div>
+    <% if user_signed_in? %>
+      <div id='item-menu'>
+        <ul>
+          <li id='all'>All</li>
+          <li id='delivered'>Delivered</li>
+          <li id='in-transit'>In Transit</li>
+        </ul>
+      </div>
+    <% end %>
 
     <div id='item-list'>
 

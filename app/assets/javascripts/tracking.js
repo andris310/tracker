@@ -28,10 +28,11 @@ $('#item-list').on('click', 'p', function() {
     var lat = pt.data('lat');
     var lng = pt.data('lng');
     var marker = L.marker([lat, lng]).addTo(map)
-          .bindPopup(pt.data('address') + '\n' + pt.data('delivered'))
+          .bindPopup(pt.data('address') + '\n')
           .openPopup();
     latlngs.push([lat, lng]);
     markers.push(marker);
+    map.panTo(new L.LatLng(lat, lng), 5);
   });
   polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
     // map.fitBounds(polyline.getBounds());

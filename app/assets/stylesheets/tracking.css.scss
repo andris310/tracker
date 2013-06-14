@@ -1,26 +1,49 @@
 $font: 'Titillium Web', sans-serif;
+$menu-color: rgba(0, 159, 221, 0.82);
+$menu-font-color: white;
+
+
+a {
+  text-decoration: none;
+}
+
+#container {
+  min-width: 65em;
+}
 
 /*------------------------------------
               MENU
 ------------------------------------*/
 
 nav {
-  margin: auto;
+  margin-left: 2.5em;
+  margin-top: .2em;
   padding: 0.3em;
-  width: 93%;
+  min-width: 61em;
+  width: 94.7%;
   height: 2.5em;
-  background-color: rgba(255, 255, 255, 0.69);
-  position: relative;
+  background-color: $menu-color;
+  position: fixed;
   z-index: 100;
 }
 
 nav ul {
+  margin-top: -.84em;
   list-style-type: none;
+  padding-left: 0;
 }
 
 nav li {
+  font-family: $font;
+  color: $menu-font-color;
+  font-size: 1.8em;
   float: left;
-  margin-left: 2em;
+  margin-top: .4em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: $menu-font-color;
 }
 
 #user_nav {
@@ -31,7 +54,40 @@ nav li {
   cursor: pointer;
 }
 
+input#q {
+  height: 3em;
+  width: 30em;
+  margin-top: 0;
+  background-color: #F5F5F5;
+  border: none;
+  color: #5688BE;
+}
 
+#create-btn {
+  cursor: pointer;
+  border: none;
+  height: 3.1em;
+  color: #FFF;
+  background-color: #FA7E5F;
+}
+
+#user_nav {
+  margin-top: -.3em;
+  margin-right: 1em;
+  height: 2.7em;
+}
+
+.signed-in-as {
+  float: right;
+  color: $menu-font-color;
+  font-family: $font;
+  font-weight: 200;
+}
+
+#sign {
+  float: right;
+  clear: both;
+}
 
 /*------------------------------------
               MAP
@@ -51,24 +107,24 @@ z-index: 1; }
   width: 20.7em;
   height: 1em;
   padding: .6em;
-  background-color: rgba(0, 159, 221, 0.82);
+  background-color: $menu-color;
 }
 
 #item-menu li {
   margin-top: -0.3em;
   font-size: 1.2em;
   font-family: $font;
-  color: white;
+  color: $menu-font-color;
   float: left;
   margin-left: .8em;
   cursor: pointer;
 }
 
 #items {
+  top: 3em;
   float: right;
   position: relative;
   margin-right: .7em;
-  margin-top: 1em;
   z-index: 100;
 }
 
@@ -86,6 +142,7 @@ z-index: 1; }
   color: white;
   font-size: 1.4em;
   font-family: $font;
+  font-weight: 200;
 }
 
 hr {
@@ -95,6 +152,7 @@ hr {
 
 .item span {
   font-family: $font;
+  font-weight: 200;
   color: white;
 }
 
@@ -103,7 +161,7 @@ hr {
   height: 31em;
 }
 
-.spinner {
+.spinner, .spinner2 {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -117,6 +175,11 @@ hr {
   margin: 100px auto;
 }
 
+.spinner2 img {
+  margin-left: 46%;
+  margin-top: .5em;
+}
+
 /*------------------------------------
               TRACK
 ------------------------------------*/
@@ -125,7 +188,68 @@ hr {
 }
 
 #track {
-  width: 15em;
+  width: 25em;
   float: left;
   margin-left: 2em;
 }
+
+/*------------------------------------
+          NEW USER/SIGN IN
+------------------------------------*/
+
+#signup {
+  background-color: $menu-color;
+  padding: 1em;
+  zoom: 1;
+  width: 20em;
+  margin: auto;
+  margin-top: 7%;
+}
+
+#signup h2, #signup label, #signup a {
+  color: white;
+  font-family: $font;
+}
+
+#signup p {
+
+}
+
+form#new_user input {
+  height: 3em;
+  width: 100%;
+  margin-top: 0;
+  background-color: #F5F5F5;
+  border: none;
+  color: #5688BE;
+
+}
+
+form#new_user.new_user input#create-user {
+  margin-top: 2em;
+  font-size: .8em;
+  background-color: #FC8560;
+  color: #FFF;
+}
+
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+}
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+}
+
+
+

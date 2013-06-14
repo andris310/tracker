@@ -2,6 +2,6 @@
 <div id='track' class='hidden'>
   <%= form_tag("/create", method: "post", id: "new-tracking") do %>
     <%= text_field_tag(:q) %>
-    <%= submit_tag("Create") %>
+    <%= submit_tag("Create", id: 'create-btn') %>
   <% end %>
 </div>

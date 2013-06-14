@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612210050) do
+ActiveRecord::Schema.define(:version => 20130614003101) do
 
   create_table "details", :force => true do |t|
     t.string   "tracking_detail"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130612210050) do
     t.datetime "updated_at",      :null => false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "address"
   end
 
   create_table "items", :force => true do |t|
