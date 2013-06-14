@@ -4,11 +4,13 @@
     <%= form_tag("/create", method: "post", id: "new-tracking") do %>
       <%= text_field_tag(:q) %>
       <%= submit_tag("Create", id: 'create-btn') %>
+      <span id="spnTrNrStatus"></span>
     <% end %>
   <% else %>
     <%= form_tag("/map", method: "get", id: "without-signin") do %>
       <%= text_field_tag(:q) %>
       <%= submit_tag("Create", id: 'create-btn') %>
+      <span id="spnTrNrStatus"></span>
     <% end %>
   <% end %>
 </div>

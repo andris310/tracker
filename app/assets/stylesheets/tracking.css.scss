@@ -7,6 +7,8 @@ a {
   text-decoration: none;
 }
 
+
+
 #container {
   min-width: 65em;
 }
@@ -57,7 +59,8 @@ nav a {
 input#q {
   font-size: 18px;
   height: 1.8em;
-  width: 15em;
+  width: 14.5em;
+  padding-left: .5em;
   margin-top: 0;
   background-color: #F5F5F5;
   border: none;
@@ -71,6 +74,9 @@ input#q {
   height: 3.1em;
   color: #FFF;
   background-color: #FA7E5F;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 #user_nav {
@@ -96,6 +102,14 @@ input#q {
 
 #sign a {
   font-family: $font;
+}
+
+#spnTrNrStatus {
+  position: absolute;
+  color: white;
+  font-family: $font;
+  margin-top: .5em;
+  margin-left: .5em;
 }
 
 /*------------------------------------
@@ -127,6 +141,16 @@ z-index: 1; }
   float: left;
   margin-left: .8em;
   cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+#item-menu li:hover, .item p:hover {
+  color: #F5FF00;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 #items {
@@ -152,6 +176,9 @@ z-index: 1; }
   font-size: 1.4em;
   font-family: $font;
   font-weight: 200;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 hr {
@@ -187,6 +214,13 @@ hr {
 .spinner2 img {
   margin-left: 46%;
   margin-top: .5em;
+}
+
+
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-border-radius: 20px;
+  border-radius: 5px;
 }
 
 /*------------------------------------

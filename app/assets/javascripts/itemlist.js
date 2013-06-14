@@ -69,6 +69,18 @@ function getItems(link) {
   });
 }
 
+function validateUspsTracking (tracking_nr) {
+  var nr = $('#q').val();
+  var filter = /^\d{22}$/;
+  if (filter.test(nr)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+
 
 $(document).ready(function() {
   // $('#track').css({'display': 'none'});
@@ -112,9 +124,23 @@ $(document).ready(function() {
     });
   });
 
+////////// Tracking Number Validation /////////////
+
+  $('#q').bind('keyup blur', function(e) {
+    var number = $('#spnTrNrStatus');
+    var button = $('#create-btn');
+    if (validateUspsTracking('q')) {
+      number.html('Valid');
+      button.css('background-color', '#9DE293');
+    }
+    else {
+      number.html('Invalid number');
+      button.css('background-color', '#E74646');
+    }
+  });
 
 
-  // AJAX for adding a new tracking number
+/////// AJAX for adding a new tracking number ///////
 
   $('#add-number').on('click', function() {
     var input = $('#track');
