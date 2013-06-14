@@ -1,7 +1,14 @@
 
 <div id='track' class='hidden'>
-  <%= form_tag("/create", method: "post", id: "new-tracking") do %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Create", id: 'create-btn') %>
+  <% if user_signed_in? %>
+    <%= form_tag("/create", method: "post", id: "new-tracking") do %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Create", id: 'create-btn') %>
+    <% end %>
+  <% else %>
+    <%= form_tag("/map", method: "get", id: "without-signin") do %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Create", id: 'create-btn') %>
+    <% end %>
   <% end %>
 </div>

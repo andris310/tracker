@@ -5,23 +5,36 @@ require 'pry'
 class TrackingController < ApplicationController
   # before_filter :auth_user
 
-  def track
+  def show
+    tracking_id = '9405510200883811412066'
+    url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%22#{URI.escape(tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"
+      doc = Nokogiri::XML(open(url))
+      doc.xpath('//TrackDetail').each do |x|
+        # detail = Detail.new
+        # detail.item_id = id
+        #   detail.tracking_detail = x.text
+        #   detail.address = detail.tracking_detail.split(',')[-2..-1].join()
+        #   geodata = Geocoder.search(detail.address)
+        #   detail.latitude = geodata[0].latitude
+        #   detail.longitude = geodata[0].longitude
+      end
+      render :json => @items.to_json
   end
 
   def list_in_transit
-    @items = Item.where(:user_id => current_user, :status => "In Transit")
+    @items = Item.where(:user_id => current_user, :status => "In Transit").order("created_at DESC")
     run_update(@items)
     render :json => @items.to_json
   end
 
   def list_delivered
-    @items = Item.where(:user_id => current_user, :delivered => true)
+    @items = Item.where(:user_id => current_user, :delivered => true).order("created_at DESC")
     run_update(@items)
     render :json => @items.to_json
   end
 
   def list_all
-    @items = Item.where(:user_id => current_user)
+    @items = Item.where(:user_id => current_user).order("created_at DESC")
     run_update(@items)
     render :json => @items.to_json
   end
@@ -34,28 +47,22 @@ class TrackingController < ApplicationController
 
   def map
     # @items = current_user.items
-    @items = Item.where(:user_id => current_user, :delivered => true)
+    @items = Item.where(:user_id => current_user, :delivered => true).order("created_at DESC")
     run_update(@items)
     # render :json => @items.to_json
   end
 
   def create_item
     @item = Item.find_by_tracking_id(params[:q])
-    if user_signed_in?
-      if @item.nil?
-        @item = Item.new
-        @item.tracking_id = params[:q]
-        @item.user_id = current_user.id
-      end
-
-      @item.update_summary
-      @item.save
-      @item.create_detail
-    else
+    if @item.nil?
       @item = Item.new
-        @item.tracking_id = params[:q]
-        @item.create_detail
+      @item.tracking_id = params[:q]
+      @item.user_id = current_user.id
     end
+
+    @item.update_summary
+    @item.save
+    @item.create_detail
 
     render :json => @item.to_json
   end

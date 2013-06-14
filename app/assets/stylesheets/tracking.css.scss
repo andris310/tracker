@@ -55,8 +55,9 @@ nav a {
 }
 
 input#q {
-  height: 3em;
-  width: 30em;
+  font-size: 18px;
+  height: 1.8em;
+  width: 15em;
   margin-top: 0;
   background-color: #F5F5F5;
   border: none;
@@ -64,6 +65,7 @@ input#q {
 }
 
 #create-btn {
+  margin-top: -0.9em;
   cursor: pointer;
   border: none;
   height: 3.1em;
@@ -78,6 +80,7 @@ input#q {
 }
 
 .signed-in-as {
+  margin-bottom: -10px;
   float: right;
   color: $menu-font-color;
   font-family: $font;
@@ -85,8 +88,14 @@ input#q {
 }
 
 #sign {
+  margin-top: .3em;
+  color: #C05D3E;
   float: right;
   clear: both;
+}
+
+#sign a {
+  font-family: $font;
 }
 
 /*------------------------------------
@@ -185,6 +194,7 @@ hr {
 ------------------------------------*/
 .hidden {
   visibility: hidden;
+  display: 'none';
 }
 
 #track {
@@ -249,6 +259,21 @@ form#new_user.new_user input#create-user {
   margin: auto;
   min-width: 50%;
   min-height: 50%;
+}
+
+#back {
+  background: url("map.png");
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#back img {
+  -webkit-filter: blur(3px);
 }
 
 

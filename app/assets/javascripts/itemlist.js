@@ -1,4 +1,44 @@
 var timer;
+var markers = [];
+var latlngs = [];
+var polyline;
+
+var map = L.map('map').setView([38.737, -93.923], 4);
+
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+
+function getDetails() {
+  $('#item-list').on('click', 'p', function() {
+  $(markers).each(function(index, marker){
+    map.removeLayer(marker);
+  });
+  $(latlngs).each(function(index, latlng) {
+    map.removeLayer(polyline);
+  });
+
+  markers = [];
+  latlngs = [];
+  $(this).next().next().children().each(function(index, point){
+    var pt = $(point);
+    var lat = pt.data('lat');
+    var lng = pt.data('lng');
+    var marker = L.marker([lat, lng]).addTo(map)
+          .bindPopup(pt.data('address') + '\n')
+          .openPopup();
+    latlngs.push([lat, lng]);
+    markers.push(marker);
+    map.panTo([lat, lng], 8);
+  });
+  polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+    // map.fitBounds(polyline.getBounds());
+});
+}
+
+
 
 function getItems(link) {
   $.ajax({
@@ -20,7 +60,7 @@ function getItems(link) {
         var summary = result['tracking_summary'];
         var delivered = result['status'];
         var item = $('<div class="item"></div>');
-        list.append(item);
+        list.append(item).fadeIn(1000);
         item.attr('id', result['id']);
         item.append($('<p>' + num + '</p>'));
         item.append($('<span>' + summary + '</spna>'));
@@ -31,6 +71,7 @@ function getItems(link) {
 
 
 $(document).ready(function() {
+  // $('#track').css({'display': 'none'});
 
   getItems('/delivered');
 
@@ -38,7 +79,7 @@ $(document).ready(function() {
   $('#delivered').on('click', function(){getItems('/delivered')});
   $('#all').on('click', function(){getItems('/all')});
 
-  $('#item-list').on('click', '.item',function() {
+  $('#item-list').on('click', '.item', function() {
     var item = $(this);
     var id = item.attr('id');
     $.ajax({
@@ -66,13 +107,24 @@ $(document).ready(function() {
           hidden.append(p);
         });
         item.append(hidden);
+        getDetails(item);
       }
     });
   });
+
+
+
   // AJAX for adding a new tracking number
 
   $('#add-number').on('click', function() {
-    $('#track').toggleClass('hidden');
+    var input = $('#track');
+    if (input.hasClass('hidden')){
+      input.removeClass('hidden');
+      input.hide().fadeIn(300);
+    } else {
+      input.addClass('hidden');
+      input.fadeOut(300);
+    };
   });
 
   $('#new-tracking').on('submit', function(event) {
@@ -90,7 +142,17 @@ $(document).ready(function() {
       complete: function () {
         clearTimeout(timer);
         $('.spinner2').fadeOut();
+      },
+      success: function () {
+        getItems('/all');
       }
     });
   });
+
+
+  // $('#track').on('click', function(){
+  //   $('#track').fadeOut(200);
+  //   $('#contact_container').delay(300).slideDown(200);
+
+  // });
 }); // end of doc ready
