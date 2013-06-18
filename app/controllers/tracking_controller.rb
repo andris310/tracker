@@ -6,19 +6,8 @@ class TrackingController < ApplicationController
   # before_filter :auth_user
 
   def show
-    tracking_id = '9405510200883811412066'
-    url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTrackRequest%20USERID=%22#{URI.escape(ENV['USPS_ID'])}%22%3E%3CTrackID%20ID=%22#{URI.escape(tracking_id)}%22%3E%3C/TrackID%3E%3C/TrackRequest%3E"
-      doc = Nokogiri::XML(open(url))
-      doc.xpath('//TrackDetail').each do |x|
-        # detail = Detail.new
-        # detail.item_id = id
-        #   detail.tracking_detail = x.text
-        #   detail.address = detail.tracking_detail.split(',')[-2..-1].join()
-        #   geodata = Geocoder.search(detail.address)
-        #   detail.latitude = geodata[0].latitude
-        #   detail.longitude = geodata[0].longitude
-      end
-      render :json => @items.to_json
+    item = SingleItem.new('9405510200883811412066')
+    render :json => item.to_json
   end
 
   def list_in_transit

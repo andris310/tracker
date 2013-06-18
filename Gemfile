@@ -10,6 +10,7 @@ gem 'devise'
 gem 'nokogiri'
 gem 'pry'
 gem 'geocoder'
+gem 'crack'
 
 
 # Gems used only for assets and not required

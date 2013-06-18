@@ -6,35 +6,35 @@ url = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3CTra
 
 d = Nokogiri::XML(open(url))
 
-# d.xpath('//TrackInfo').each do |x|
-  d.xpath("//TrackDetail").each do |t|
-    puts t.text
-  end
+  puts d.xpath('//TrackSummary').text
+  # d.xpath("//TrackDetail").each do |t|
+
+
 #   puts "--"
 # end
 
-<% @items.each do |i| %>
-        <div class='item'>
-          <% lu = Detail.find_by_item_id(i.id) %>
-          <% if !lu.nil? %>
-            <p data-lat=<%= lu.latitude %>
-               data-lng=<%= lu.longitude %>
-               data-address=<%= lu.tracking_detail.split(',')[-2..-1].join() %>
-               data-delivered=<%= i.status %>>
-          <% end %>
-              <%= i.tracking_id %>
-            </p>
-            <hr/>
-          <span> <%= i.tracking_summary %></span>
+# <% @items.each do |i| %>
+#         <div class='item'>
+#           <% lu = Detail.find_by_item_id(i.id) %>
+#           <% if !lu.nil? %>
+#             <p data-lat=<%= lu.latitude %>
+#                data-lng=<%= lu.longitude %>
+#                data-address=<%= lu.tracking_detail.split(',')[-2..-1].join() %>
+#                data-delivered=<%= i.status %>>
+#           <% end %>
+#               <%= i.tracking_id %>
+#             </p>
+#             <hr/>
+#           <span> <%= i.tracking_summary %></span>
 
-          <div class='hidden-data'>
-            <% hidden_details = (Detail.where('item_id' => i.id)).reverse %>
-            <% hidden_details.each do |d| %>
-              <p data-lat="<%= d.latitude %>"
-                 data-lng="<%= d.longitude %>"
-                 data-address="<%= d.tracking_detail.split(',')[-2..-1].join() %>">
-              </p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+#           <div class='hidden-data'>
+#             <% hidden_details = (Detail.where('item_id' => i.id)).reverse %>
+#             <% hidden_details.each do |d| %>
+#               <p data-lat="<%= d.latitude %>"
+#                  data-lng="<%= d.longitude %>"
+#                  data-address="<%= d.tracking_detail.split(',')[-2..-1].join() %>">
+#               </p>
+#             <% end %>
+#           </div>
+#         </div>
+#       <% end %>
