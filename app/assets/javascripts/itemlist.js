@@ -209,8 +209,17 @@ $(document).ready(function() {
         });
 
         $(locations).each(function(index, detail) {
-
+          var lat = detail[0];
+          var lng = detail[1];
+          var address = detail[2];
+          // var address = (result['address']);
+          var p = $('<p></p>');
+          p.data('lat', lat);
+          p.data('lng', lng);
+          p.data('address', address);
+          hidden.append(p);
         });
+        item.append(hidden);
       }
     });
   });

@@ -17,6 +17,7 @@ class SingleItem
       latitude = geodata[0].latitude
       longitude = geodata[0].longitude
       @locations << [latitude, longitude]
+      @locations << address
     end
   end
 
