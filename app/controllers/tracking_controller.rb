@@ -6,7 +6,7 @@ class TrackingController < ApplicationController
   # before_filter :auth_user
 
   def show
-    item = SingleItem.new('9405510200883811412066')
+    item = SingleItem.new(params[:q])
     render :json => item.to_json
   end
 

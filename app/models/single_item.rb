@@ -9,8 +9,14 @@ class SingleItem
     @summary = doc.xpath('//TrackSummary').text
 
     @details = []
-    doc.xpath('//TrackDetail').each do |x|
-      @details << x.text
+    @locations = []
+    doc.xpath('//TrackDetail').each do |item|
+      @details << item.text
+      address = item.text.split(',')[-2..-1].join()
+      geodata = Geocoder.search(address)
+      latitude = geodata[0].latitude
+      longitude = geodata[0].longitude
+      @locations << [latitude, longitude]
     end
   end
 

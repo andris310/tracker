@@ -153,6 +153,7 @@ $(document).ready(function() {
     };
   });
 
+///// SAVING NEW item to the user accoutn /////
   $('#new-tracking').on('submit', function(event) {
     event.preventDefault();
     var form = $(this);
@@ -162,15 +163,54 @@ $(document).ready(function() {
       method: form.attr('method'),
       data: {q: input},
       dataType: 'json',
-      beforeSend: function () {
+      beforeSend: function() {
       timer = setTimeout(function () { $('.spinner2').fadeIn(); }, 100);
       },
-      complete: function () {
+      complete: function() {
         clearTimeout(timer);
         $('.spinner2').fadeOut();
       },
-      success: function () {
+      success: function() {
         getItems('/all');
+      }
+    });
+  });
+
+  ///// DISPLAY single item without Login //////
+  $('#without-signin').on('submit', function(event) {
+    event.preventDefault();
+    var form = $(this);
+    var input = $('#q').val();
+    $.ajax({
+      url: form.attr('action'),
+      method: form.attr('method'),
+      data: {q: input},
+      dataType: 'json',
+      beforeSend: function() {
+        timer = setTimeout(function() {$('.spinner2').fadeIn();}, 100);
+      },
+      complete: function() {
+        clearTimeout(timer);
+        $('.spinner2').fadeOut();
+      },
+      success: function(result) {
+        var list = $('#item-list');
+        list.html('');
+        var item = $('<div class="item single-item"></div>');
+        var hidden = $('<div class="hidden-data"></div>');
+        var details = result['details'];
+        var locations = result['locations'];
+        list.append(item);
+        item.append($('<p>' + result["tracking_id"] + '</p>'));
+        item.append($('<span>' + result["summary"] + '</span>'));
+
+        $(details).each(function(index, detail) {
+          item.append($('<p class="tr-detail">' + detail + '</p>'));
+        });
+
+        $(locations).each(function(index, detail) {
+
+        });
       }
     });
   });
