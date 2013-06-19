@@ -11,8 +11,8 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-function getDetails() {
-  $('#item-list').on('click', 'p', function() {
+function getDetails(item) {
+  // $('#item-list').on('click', 'p.number', function() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
   });
@@ -22,7 +22,7 @@ function getDetails() {
 
   markers = [];
   latlngs = [];
-  $(this).next().next().children().each(function(index, point){
+  item.find('.hidden-data p').each(function(index, point){
     var pt = $(point);
     var lat = pt.data('lat');
     var lng = pt.data('lng');
@@ -35,7 +35,7 @@ function getDetails() {
   });
   polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
     // map.fitBounds(polyline.getBounds());
-});
+// });
 }
 
 
@@ -62,7 +62,7 @@ function getItems(link) {
         var item = $('<div class="item"></div>');
         list.append(item).fadeIn(1000);
         item.attr('id', result['id']);
-        item.append($('<p>' + num + '</p>'));
+        item.append($('<p class="number">' + num + '</p>'));
         item.append($('<span>' + summary + '</spna>'));
       });
     }
@@ -94,34 +94,36 @@ $(document).ready(function() {
   $('#item-list').on('click', '.item', function() {
     var item = $(this);
     var id = item.attr('id');
-    $.ajax({
-      url: '/details',
-      method: 'get',
-      data: {q: id},
-      dataType: 'json',
-      beforeSend: function () {
-      timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
-      },
-      complete: function () {
-        clearTimeout(timer);
-        $('.spinner').fadeOut();
-      },
-      success: function(results) {
-        var hidden = $('<div class="hidden-data"></div>');
-        $(results).each(function(index, result) {
-          var lat = (result['latitude']);
-          var lng = (result['longitude']);
-          var address = (result['address']);
-          var p = $('<p></p>');
-          p.data('lat', lat);
-          p.data('lng', lng);
-          p.data('address', address);
-          hidden.append(p);
-        });
-        item.append(hidden);
-        getDetails(item);
-      }
-    });
+    if (!(item.has('.hidden-data').length > 0)) {
+      $.ajax({
+        url: '/details',
+        method: 'get',
+        data: {q: id},
+        dataType: 'json',
+        beforeSend: function () {
+        timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
+        },
+        complete: function () {
+          clearTimeout(timer);
+          $('.spinner').fadeOut();
+        },
+        success: function(results) {
+          var hidden = $('<div class="hidden-data"></div>');
+          $(results).each(function(index, result) {
+            var lat = (result['latitude']);
+            var lng = (result['longitude']);
+            var address = (result['address']);
+            var p = $('<p></p>');
+            p.data('lat', lat);
+            p.data('lng', lng);
+            p.data('address', address);
+            hidden.append(p);
+          });
+          item.append(hidden);
+          getDetails(item);
+        }
+      });
+    }; /// end of 'if' statement
   });
 
 ////////// Tracking Number Validation /////////////
@@ -140,7 +142,7 @@ $(document).ready(function() {
   });
 
 
-/////// AJAX for adding a new tracking number ///////
+/////// Show or hide Add Tracking number field ///////
 
   $('#add-number').on('click', function() {
     var input = $('#track');
@@ -227,6 +229,7 @@ $(document).ready(function() {
           hidden.append(p);
           // debugger;
         });
+        getDetails(item);
       }
     });
   });
