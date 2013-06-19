@@ -205,6 +205,18 @@ hr {
   height: 31em;
 }
 
+.track-details {
+  margin-top: .5em;
+  padding-top: .5em;
+  border-top: 2px solid rgba(255, 255, 255, 0.76);
+}
+
+p.tr-detail {
+  cursor: default;
+  padding-bottom: .4em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.44);
+}
+
 .spinner, .spinner2 {
   position: absolute;
   top: 0;

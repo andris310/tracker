@@ -1,3 +1,4 @@
+require 'pry'
 class SingleItem
   attr_accessor :tracking_id
 
@@ -11,14 +12,16 @@ class SingleItem
     @details = []
     @locations = []
     doc.xpath('//TrackDetail').each do |item|
-      @details << item.text
-      address = item.text.split(',')[-2..-1].join()
-      geodata = Geocoder.search(address)
-      latitude = geodata[0].latitude
-      longitude = geodata[0].longitude
-      @locations << [latitude, longitude]
-      @locations << address
+      if !(item.text.include?('Electronic Shipping Info Received'))
+        @details << item.text
+        address = item.text.split(',')[-2..-1].join()
+        geodata = Geocoder.search(address)
+        latitude = geodata[0].latitude
+        longitude = geodata[0].longitude
+        @locations << [latitude, longitude, address]
+      end
     end
+    @locations.reverse!
   end
 
 end

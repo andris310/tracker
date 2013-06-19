@@ -144,6 +144,9 @@ $(document).ready(function() {
 
   $('#add-number').on('click', function() {
     var input = $('#track');
+    // input.animate({
+    //   opacity: 'toggle'
+    // }, 400);
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
       input.hide().fadeIn(300);
@@ -197,16 +200,20 @@ $(document).ready(function() {
         var list = $('#item-list');
         list.html('');
         var item = $('<div class="item single-item"></div>');
+        var trackDetails = $('<div class="track-details"></div>');
         var hidden = $('<div class="hidden-data"></div>');
         var details = result['details'];
         var locations = result['locations'];
         list.append(item);
         item.append($('<p>' + result["tracking_id"] + '</p>'));
         item.append($('<span>' + result["summary"] + '</span>'));
+        item.append(hidden);
 
         $(details).each(function(index, detail) {
-          item.append($('<p class="tr-detail">' + detail + '</p>'));
+          trackDetails.append($('<p class="tr-detail">' + detail + '</p>'));
         });
+
+        item.append(trackDetails);
 
         $(locations).each(function(index, detail) {
           var lat = detail[0];
@@ -218,8 +225,8 @@ $(document).ready(function() {
           p.data('lng', lng);
           p.data('address', address);
           hidden.append(p);
+          // debugger;
         });
-        item.append(hidden);
       }
     });
   });
