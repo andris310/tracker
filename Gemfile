@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'devise'
 gem 'nokogiri'
 gem 'pry'
@@ -15,6 +15,19 @@ gem 'crack'
 
 # Gems used only for assets and not required
 # in production environments by default.
+group :development do
+  gem 'meta_request'
+  gem 'pry'
+  gem 'sqlite3'
+end
+
+group :development, :test do
+  gem 'simplecov', :require => false
+  gem 'rspec-rails', '~> 2.0'
+  gem 'capybara'
+end
+
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
