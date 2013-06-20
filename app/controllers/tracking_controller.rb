@@ -57,8 +57,8 @@ class TrackingController < ApplicationController
   end
 
   private
-    def run_update packg_to_update
-    packg_to_update.map do |item|
+    def run_update packages
+    packages.map do |item|
       if !(item.delivered)
         item.update_summary
         item.create_detail
