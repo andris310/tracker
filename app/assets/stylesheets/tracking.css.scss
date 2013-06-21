@@ -1,6 +1,7 @@
 $font: 'Titillium Web', sans-serif;
 $menu-color: rgba(0, 159, 221, 0.82);
 $menu-font-color: white;
+$green: #F5FF00;
 
 
 a {
@@ -35,6 +36,10 @@ nav ul {
   padding-left: 0;
 }
 
+#maptrack a {
+  color: $green;
+}
+
 nav li {
   font-family: $font;
   color: $menu-font-color;
@@ -51,6 +56,7 @@ nav a {
 #user_nav {
   float: right;
 }
+
 
 #add-number {
   cursor: pointer;
