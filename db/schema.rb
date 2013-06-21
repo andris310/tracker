@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617235035) do
+ActiveRecord::Schema.define(:version => 20130621044932) do
 
   create_table "details", :force => true do |t|
-    t.string   "tracking_detail"
+    t.text     "tracking_detail", :limit => 255
     t.integer  "item_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(:version => 20130617235035) do
 
   create_table "items", :force => true do |t|
     t.string   "tracking_id"
-    t.string   "tracking_summary"
+    t.text     "tracking_summary", :limit => 255
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.boolean  "delivered"
     t.string   "status"
   end
