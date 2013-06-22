@@ -71,13 +71,16 @@ function getItems(link) {
 
 function validateUspsTracking (tracking_nr) {
   var nr = $('#q').val();
-  var filter = /^\d{22}$/;
-  if (filter.test(nr)) {
-        return true;
-    }
-    else {
-        return false;
-    }
+  // var filter = /^\d{22}$/;
+  if ((/^\d{22}$/).test(nr)) {
+    return true;
+  }
+  else if ((/^([L][N])\d{9}([U][S])$/).test(nr)) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 
