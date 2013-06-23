@@ -74,19 +74,19 @@ function validateUspsTracking (tracking_nr) {
   if ((/^\d{22}$/).test(nr)) {
     return true;
   }
-  else if ((/^([L][N])\d{9}([U][S])$/).test(nr)) {
+  else if ((/^([L|l][N|n])\d{9}([U|u][S|s])$/).test(nr)) {
     return true;
   }
-  else if ((/^([E][A])\d{9}([U][S])$/).test(nr)) {
+  else if ((/^([E|e][A|a])\d{9}([U|u][S|s])$/).test(nr)) {
     return true;
   }
-  else if ((/^([E][C])\d{9}([U][S])$/).test(nr)) {
+  else if ((/^([E|e][C|c])\d{9}([U|u][S|s])$/).test(nr)) {
     return true;
   }
-  else if ((/^([C][P])\d{9}([U][S])$/).test(nr)) {
+  else if ((/^([C|c][P|p])\d{9}([U|u][S|s])$/).test(nr)) {
     return true;
   }
-  else if ((/^([R][A])\d{9}([U][S])$/).test(nr)) {
+  else if ((/^([R|r][A|a])\d{9}([U|u][S|s])$/).test(nr)) {
     return true;
   }
   else {
