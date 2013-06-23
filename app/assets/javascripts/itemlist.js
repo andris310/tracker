@@ -135,6 +135,10 @@ $(document).ready(function() {
           });
           item.append(hidden);
           getDetails(item);
+        },
+        error: function () {
+          $('.error').slideDown();
+          setTimeout(function () { $('.error').slideUp(); }, 3000);
         }
       });
     }; /// end of 'if' statement
@@ -166,6 +170,7 @@ $(document).ready(function() {
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
       input.hide().fadeIn(300);
+      input.focus();
     } else {
       input.addClass('hidden');
       input.fadeOut(300);
@@ -191,6 +196,10 @@ $(document).ready(function() {
       },
       success: function() {
         getItems('/all');
+      },
+      error: function () {
+        $('.error').slideDown();
+        setTimeout(function () { $('.error').slideUp(); }, 3000);
       }
     });
   });
@@ -244,14 +253,13 @@ $(document).ready(function() {
           // debugger;
         });
         getDetails(item);
+      },
+      error: function () {
+        $('.error').slideDown();
+        setTimeout(function () { $('.error').slideUp(); }, 3000);
       }
     });
   });
 
 
-  // $('#track').on('click', function(){
-  //   $('#track').fadeOut(200);
-  //   $('#contact_container').delay(300).slideDown(200);
-
-  // });
 }); // end of doc ready

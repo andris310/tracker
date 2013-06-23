@@ -7,6 +7,11 @@
       <div class="spinner" style="display: none;">
         <%= image_tag("loader.gif") %>
       </div>
+
+      <span class="error hidden">
+        Server is not working. Try again later.
+      </span>
+
     <% if user_signed_in? %>
       <div id='item-menu'>
         <ul>
