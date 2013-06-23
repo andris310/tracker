@@ -12,7 +12,6 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 
 function getDetails(item) {
-  // $('#item-list').on('click', 'p.number', function() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
   });
@@ -76,6 +75,18 @@ function validateUspsTracking (tracking_nr) {
     return true;
   }
   else if ((/^([L][N])\d{9}([U][S])$/).test(nr)) {
+    return true;
+  }
+  else if ((/^([E][A])\d{9}([U][S])$/).test(nr)) {
+    return true;
+  }
+  else if ((/^([E][C])\d{9}([U][S])$/).test(nr)) {
+    return true;
+  }
+  else if ((/^([C][P])\d{9}([U][S])$/).test(nr)) {
+    return true;
+  }
+  else if ((/^([R][A])\d{9}([U][S])$/).test(nr)) {
     return true;
   }
   else {
@@ -161,7 +172,7 @@ $(document).ready(function() {
     };
   });
 
-///// SAVING NEW item to the user accoutn /////
+///// SAVING NEW item to the user account /////
   $('#new-tracking').on('submit', function(event) {
     event.preventDefault();
     var form = $(this);
