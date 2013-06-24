@@ -68,6 +68,8 @@ function getItems(link) {
   });
 }
 
+////  Tracking number Validation Criteria ////////
+
 function validateUspsTracking (tracking_nr) {
   var nr = $('#q').val();
   // var filter = /^\d{22}$/;

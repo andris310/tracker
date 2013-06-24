@@ -22,13 +22,12 @@ class SingleItem
       end
     end
 
-    # if (((Time.now).to_date - @summary.to_date).to_i > 40) && !(@details.size == 0)
-    #   noinfo = "It has been a while since this item was processed through USPS, location data is not available for this item. You may request that the additional information be retrieved from the archives of USPS at their website."
-    #   @details << noinfo
-    # end
+    if (@summary.include?('delivered')) && (@details.size == 0)
+      noinfo = "It has been a while since this item was processed through USPS, location data is not available for this item. You may request that the additional information be retrieved from the archives of USPS at their website."
+      @details << noinfo
+    end
 
     @locations.reverse!
-
   end
 
 end
