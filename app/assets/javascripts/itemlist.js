@@ -240,7 +240,7 @@ $(document).ready(function() {
   $('#without-signin').on('submit', function(event) {
     /// Center New Form for landing page
     var newNumber = $('.new-number');
-    newNumber.slideUp(400, function() {
+    newNumber.slideUp(200, function() {
       newNumber.addClass('track2 hidden').removeClass('new-number')
     });
 
