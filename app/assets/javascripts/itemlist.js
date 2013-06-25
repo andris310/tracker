@@ -10,14 +10,18 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
-function getDetails(item) {
+function clearDetails() {
   $(markers).each(function(index, marker){
     map.removeLayer(marker);
   });
   $(latlngs).each(function(index, latlng) {
     map.removeLayer(polyline);
   });
+}
+
+
+function getDetails(item) {
+  clearDetails();
 
   markers = [];
   latlngs = [];
@@ -212,24 +216,24 @@ $(document).ready(function() {
   });
 
 
-  //////////// DELETE item //////////////
-  // $('#item-list').on('click', '.remove', function() {
-  //   event.preventDefault();
-  //   var item = $(this);
-  //   var id = item.parent().attr('id');
-  //   console.log(id);
-  //   $.ajax({
-  //     url: '/delete',
-  //     method: 'delete',
-  //     data: {q: id},
-  //     success: function() {
+  ////////// DELETE item //////////////
+  $('#item-list').on('click', '.remove', function() {
+    event.preventDefault();
+    var item = $(this).parent();
+    var id = item.attr('id');
+    console.log(id);
+    $.ajax({
+      url: '/delete',
+      method: 'delete',
+      data: {q: id},
+      success: function() {
+        item.fadeOut(300);
+        clearDetails();
+      }
+    }); //end of AJAX
+    // debugger;
 
-  //     }
-
-  //   }); //end of AJAX
-  //   // debugger;
-
-  // });
+  });
 
 
   ///// DISPLAY single item without Login //////
