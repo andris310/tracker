@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
   <div class='track1 track2 hidden'>
     <%= form_tag("/create", method: "post", id: "new-tracking") do %>
-      <%= text_field_tag(:q, nil, :placeholder => 'Enter Tracking Number') %>
+      <%= text_field_tag(:q, nil, :placeholder => 'Enter USPS Tracking Number') %>
       <%= submit_tag("Create", id: 'create-btn') %>
       <span id="spnTrNrStatus"></span>
     <% end %>
@@ -10,7 +10,7 @@
 <% else %>
   <div class='track1 new-number'>
     <%= form_tag("/showinfo", method: "get", id: "without-signin") do %>
-      <%= text_field_tag(:q, nil, :placeholder => 'Enter Tracking Number') %>
+      <%= text_field_tag(:q, nil, :placeholder => 'Enter USPS Tracking Number') %>
       <%= submit_tag("Track", id: 'create-btn') %>
       <span id="spnTrNrStatus"></span>
     <% end %>
