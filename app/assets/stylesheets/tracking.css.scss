@@ -228,6 +228,22 @@ p.tr-detail {
   border-bottom: 1px solid rgba(255, 255, 255, 0.44);
 }
 
+.remove {
+  margin-top: 0.3em;
+  float: right;
+  cursor: pointer;
+  padding-right: 0.5em;
+}
+
+a.remove {
+  padding-right: .5em;
+  padding-left: .3em;
+}
+
+a.remove:hover {
+  color: red;
+}
+
 .spinner, .spinner2 {
   position: absolute;
   top: 0;

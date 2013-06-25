@@ -13,6 +13,7 @@ Tracker::Application.routes.draw do
   get '/all', to: 'tracking#list_all'
   get '/details', to: 'tracking#item_details'
   get '/showinfo', to: 'tracking#show'
+  delete '/delete', to: 'tracking#destroy'
 
 
 end

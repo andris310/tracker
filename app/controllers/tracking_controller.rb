@@ -56,6 +56,12 @@ class TrackingController < ApplicationController
     render :json => @item.to_json
   end
 
+  def destroy
+    @item = Item.find(params[:q])
+    @item.destroy
+    # binding.pry
+  end
+
   private
     def run_update packages
     packages.map do |item|

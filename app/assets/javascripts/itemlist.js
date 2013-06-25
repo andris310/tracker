@@ -63,6 +63,7 @@ function getItems(link) {
         item.attr('id', result['id']);
         item.append($('<p class="number">' + num + '</p>'));
         item.append($('<span>' + summary + '</spna>'));
+        item.append($('<a class="remove"><span>X</span></a>'));
       });
     }
   });
@@ -144,6 +145,7 @@ $(document).ready(function() {
         }
       });
     }; /// end of 'if' statement
+    getDetails(item);
   });
 
 ////////// Tracking Number Validation /////////////
@@ -160,9 +162,6 @@ $(document).ready(function() {
       button.css('background-color', '#E74646');
     }
   });
-
-
-/////// Center New Form for landing page ///////
 
 
 
@@ -212,13 +211,34 @@ $(document).ready(function() {
     });
   });
 
+
+  //////////// DELETE item //////////////
+  // $('#item-list').on('click', '.remove', function() {
+  //   event.preventDefault();
+  //   var item = $(this);
+  //   var id = item.parent().attr('id');
+  //   console.log(id);
+  //   $.ajax({
+  //     url: '/delete',
+  //     method: 'delete',
+  //     data: {q: id},
+  //     success: function() {
+
+  //     }
+
+  //   }); //end of AJAX
+  //   // debugger;
+
+  // });
+
+
   ///// DISPLAY single item without Login //////
   $('#without-signin').on('submit', function(event) {
+    /// Center New Form for landing page
     var newNumber = $('.new-number');
     newNumber.slideUp(400, function() {
       newNumber.addClass('track2 hidden').removeClass('new-number')
     });
-
 
     event.preventDefault();
     var form = $(this);
