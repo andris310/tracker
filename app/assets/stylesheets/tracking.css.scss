@@ -67,6 +67,7 @@ nav a {
 }
 
 input#q {
+  text-align: center;
   font-size: 18px;
   height: 1.8em;
   width: 14.5em;
@@ -261,10 +262,22 @@ p.tr-detail {
   display: 'none';
 }
 
-#track {
-  width: 25em;
+.track1 {
+  width: 27em;
+}
+
+.track2 {
   float: left;
   margin-left: 2em;
+}
+
+.new-number {
+  margin-top: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  background: rgba(0, 159, 221, 0.7);
+  padding: .7em;
+  padding-left: 7em;
 }
 
 /*------------------------------------

@@ -162,10 +162,16 @@ $(document).ready(function() {
   });
 
 
+/////// Center New Form for landing page ///////
+
+
+
+
+
 /////// Show or hide Add Tracking number field ///////
 
   $('#add-number').on('click', function() {
-    var input = $('#track');
+    var input = $('.track1');
     // input.animate({
     //   opacity: 'toggle'
     // }, 400);
@@ -208,6 +214,12 @@ $(document).ready(function() {
 
   ///// DISPLAY single item without Login //////
   $('#without-signin').on('submit', function(event) {
+    var newNumber = $('.new-number');
+    newNumber.slideUp(400, function() {
+      newNumber.addClass('track2 hidden').removeClass('new-number')
+    });
+
+
     event.preventDefault();
     var form = $(this);
     var input = $('#q').val();
