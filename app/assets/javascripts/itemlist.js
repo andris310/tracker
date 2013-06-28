@@ -5,7 +5,6 @@ var polyline;
 
 var map = L.map('map').setView([38.737, -93.923], 4);
 
-// add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
@@ -37,9 +36,7 @@ function getDetails(item) {
     map.panTo([lat, lng], 8);
   });
   polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
-    // map.fitBounds(polyline.getBounds());
-// });
-}
+};
 
 
 
@@ -104,7 +101,6 @@ function validateUspsTracking (tracking_nr) {
 
 
 $(document).ready(function() {
-  // $('#track').css({'display': 'none'});
 
   getItems('/delivered');
 
@@ -175,9 +171,6 @@ $(document).ready(function() {
 
   $('#add-number').on('click', function() {
     var input = $('.track1');
-    // input.animate({
-    //   opacity: 'toggle'
-    // }, 400);
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
       input.hide().fadeIn(300);
@@ -231,8 +224,6 @@ $(document).ready(function() {
         clearDetails();
       }
     }); //end of AJAX
-    // debugger;
-
   });
 
 
@@ -241,8 +232,10 @@ $(document).ready(function() {
     /// Center New Form for landing page
     var newNumber = $('.new-number');
     newNumber.slideUp(200, function() {
-      newNumber.addClass('track2 hidden').removeClass('new-number')
+      newNumber.addClass('track2 hidden').removeClass('new-number').removeClass('blur');
+      $('#map').removeClass('blur');
     });
+
 
     event.preventDefault();
     var form = $(this);
@@ -288,7 +281,6 @@ $(document).ready(function() {
           p.data('lng', lng);
           p.data('address', address);
           hidden.append(p);
-          // debugger;
         });
         getDetails(item);
       },
