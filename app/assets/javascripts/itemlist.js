@@ -171,6 +171,7 @@ $(document).ready(function() {
 
   $('#add-number').on('click', function() {
     var input = $('.track1');
+        $('#q').val('');
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
       input.hide().fadeIn(300);
