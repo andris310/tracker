@@ -111,6 +111,12 @@ $(document).ready(function() {
   $('#item-list').on('click', '.item', function() {
     var item = $(this);
     var id = item.attr('id');
+    var map = $('#map');
+
+    if (map.hasClass('blur')) {
+      map.removeClass('blur');
+    };
+
     if (!(item.has('.hidden-data').length > 0)) {
       $.ajax({
         url: '/details',
@@ -233,10 +239,8 @@ $(document).ready(function() {
     /// Center New Form for landing page
     var newNumber = $('.new-number');
     newNumber.slideUp(200, function() {
-      newNumber.addClass('track2 hidden').removeClass('new-number').removeClass('blur');
-      $('#map').removeClass('blur');
+      newNumber.addClass('track2 hidden').removeClass('new-number');
     });
-
 
     event.preventDefault();
     var form = $(this);
@@ -284,6 +288,7 @@ $(document).ready(function() {
           hidden.append(p);
         });
         getDetails(item);
+        $('#map').removeClass('blur');
       },
       error: function () {
         $('.error').slideDown();
