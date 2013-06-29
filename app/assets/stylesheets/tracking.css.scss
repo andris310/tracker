@@ -311,6 +311,10 @@ a.remove span:hover {
   padding-left: 7em;
 }
 
+:focus {
+outline: none;
+}
+
 /*------------------------------------
           NEW USER/SIGN IN
 ------------------------------------*/
