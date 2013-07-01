@@ -177,11 +177,10 @@ $(document).ready(function() {
 
   $('#add-number').on('click', function() {
     var input = $('.track1');
-        $('#q').val('');
+        $('#q').val('').focus();
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
       input.hide().fadeIn(300);
-      input.focus();
     } else {
       input.addClass('hidden');
       input.fadeOut(300);
