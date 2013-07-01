@@ -30,6 +30,9 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    better_errors (0.7.2)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.0.4)
     callsite (0.0.11)
     capybara (2.1.0)
@@ -155,6 +158,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
   capybara
   coffee-rails (~> 3.2.1)
   crack

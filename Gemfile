@@ -17,6 +17,7 @@ group :development do
   gem 'meta_request'
   gem 'pry'
   gem 'sqlite3'
+  gem 'better_errors'
 end
 
 group :development, :test do
