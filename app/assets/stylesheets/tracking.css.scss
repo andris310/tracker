@@ -15,7 +15,7 @@ a {
 
 
 #container {
-  min-width: 65em;
+  padding: .5em;
 }
 
 .blur {
@@ -29,14 +29,11 @@ a {
 ------------------------------------*/
 
 nav {
-  margin-left: 2.5em;
   margin-top: .2em;
-  padding: 0.3em;
-  min-width: 61em;
-  width: 94.7%;
+  padding: 0.5em;
   height: 2.5em;
   background-color: $menu-color;
-  position: fixed;
+  position: relative;
   z-index: 100;
 }
 
@@ -142,7 +139,12 @@ left: 0;
 position: fixed !important; /* Acts in pretty much the same way as background-attachment: fixed for an image background. Has to be !important only if you're using the Google Maps API. */
 top: 0;
 width: 100%;
-z-index: 1; }
+z-index: 1;
+}
+
+.leaflet-container .leaflet-control-zoom {
+  margin-top: 6.5em;
+}
 
 #item-menu {
   width: 21.8em;
@@ -180,10 +182,8 @@ z-index: 1; }
 }
 
 #items {
-  top: 3em;
   float: right;
   position: relative;
-  margin-right: .7em;
   z-index: 100;
 }
 
