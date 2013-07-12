@@ -20,6 +20,7 @@ class Item < ActiveRecord::Base
         if self.tracking_summary.include?('delivered')
           self.status = 'Delivered'
           self.delivered = true
+          self.save
         end
       end
     end

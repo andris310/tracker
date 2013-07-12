@@ -10,6 +10,7 @@ gem 'nokogiri'
 gem 'pry'
 gem 'geocoder'
 gem 'crack'
+gem 'fedex'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -59,9 +59,15 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fedex (3.0.0)
+      httparty (~> 0.10.0)
+      nokogiri (~> 1.5.0)
     geocoder (1.1.8)
     google-analytics-rails (0.0.4)
     hike (1.2.3)
+    httparty (0.10.2)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (3.0.1)
@@ -78,6 +84,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.23)
     multi_json (1.7.6)
+    multi_xml (0.5.4)
     nokogiri (1.5.9)
     orm_adapter (0.4.0)
     pg (0.15.1)
@@ -163,6 +170,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   crack
   devise
+  fedex
   geocoder
   google-analytics-rails
   jquery-rails
