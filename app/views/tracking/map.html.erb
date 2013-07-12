@@ -15,9 +15,9 @@
     <% if user_signed_in? %>
       <div id='item-menu'>
         <ul>
-          <li id='all'>All [<%= @count_all %>]</li>
-          <li id='delivered'>Delivered [<%= @count_delivered %>]</li>
-          <li id='in-transit'>In Transit [<%= @count_intransit %>]</li>
+          <li id='all'>All <span class='count'>[<%= @count_all %>]</span></li>
+          <li id='delivered'>Delivered <span class='count'>[<%= @count_delivered %>]</span></li>
+          <li id='in-transit'>In Transit <span class='count'>[<%= @count_intransit %>]</span></li>
         </ul>
       </div>
     <% end %>
