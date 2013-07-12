@@ -18,6 +18,7 @@ class TrackingController < ApplicationController
 
   def list_delivered
     @items = Item.where(:user_id => current_user, :delivered => true).order("created_at DESC")
+    @delivered_count = @items.count
     run_update(@items)
     render :json => @items.to_json
   end
@@ -38,6 +39,9 @@ class TrackingController < ApplicationController
     # @items = current_user.items
     @items = Item.where(:user_id => current_user, :delivered => true).order("created_at DESC")
     run_update(@items)
+    @count_all = Item.all.count
+    @count_delivered = @items.count
+    @count_intransit = Item.where(:user_id => current_user, :status => "In Transit").count
     # render :json => @items.to_json
   end
 
@@ -59,7 +63,6 @@ class TrackingController < ApplicationController
   def destroy
     @item = Item.find(params[:q])
     @item.destroy
-    # binding.pry
   end
 
   private
