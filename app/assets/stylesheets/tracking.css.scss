@@ -70,6 +70,7 @@ nav a {
 }
 
 input#q {
+  float: left;
   text-align: center;
   font-size: 18px;
   height: 1.8em;
@@ -80,13 +81,16 @@ input#q {
   color: #5688BE;
 }
 
+
 #create-btn {
-  margin-top: -0.9em;
   cursor: pointer;
   border: none;
   height: 3.1em;
-  color: #FFF;
-  background-color: #FA7E5F;
+  width: 3.1em;
+  background: url(search-white.svg);
+  background-size: 2.9em 2.9em;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  // background-color: #FA7E5F;
   -webkit-transition-duration: 0.4s;
   -moz-transition-duration: 0.4s;
   transition-duration: 0.4s;
@@ -125,7 +129,7 @@ input#q {
   position: absolute;
   color: white;
   font-family: $font;
-  margin-top: .5em;
+  margin-top: .3em;
   margin-left: .5em;
 }
 
@@ -223,7 +227,7 @@ p.tr-detail {
 
 hr {
   margin-top: -0.4em;
-  border: 1px solid rgba(255, 255, 255, 0.83);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .item span {

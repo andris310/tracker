@@ -3,7 +3,7 @@ var markers = [];
 var latlngs = [];
 var polyline;
 
-var map = L.map('map').setView([38.737, -93.923], 4);
+var map = L.map('map').setView([38.737, -93.923], 5);
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
@@ -33,7 +33,7 @@ function getDetails(item) {
           .openPopup();
     latlngs.push([lat, lng]);
     markers.push(marker);
-    map.panTo([lat, lng], 8);
+    map.panTo([lat, lng], 9);
   });
   polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 };
@@ -60,9 +60,10 @@ function getItems(link) {
         var summary = result['tracking_summary'];
         var delivered = result['status'];
         var item = $('<div class="item"></div>');
-        list.append(item).fadeIn(1000);
+        list.append(item);
         item.attr('id', result['id']);
         item.append($('<p class="number">' + num + '</p>'));
+        item.append($('<hr/>'));
         item.append($('<span>' + summary + '</spna>'));
         item.append($('<a class="remove"><span>X</span></a>'));
       });
@@ -161,11 +162,17 @@ $(document).ready(function() {
     var button = $('#create-btn');
     if (validateUspsTracking('q')) {
       number.html('Valid');
-      button.css('background-color', '#9DE293');
+      button.css({
+        'background-color': '#9DE293',
+        'border': '1px solid #9DE293'
+      });
     }
     else {
       number.html('Invalid number');
-      button.css('background-color', '#E74646');
+      button.css({
+        'background-color': '#E74646',
+        'border': '1px solid #E74646'
+      });
     }
   });
 
@@ -177,10 +184,12 @@ $(document).ready(function() {
 
   $('#add-number').on('click', function() {
     var input = $('.track1');
-        $('#q').val('');
+    var field = $('#q');
+        field.val('');
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
-      input.hide().fadeIn(300);
+      input.hide().fadeIn(300)
+      // .css('width', '14.5em');
     } else {
       input.addClass('hidden');
       input.fadeOut(300);
