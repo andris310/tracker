@@ -3,7 +3,7 @@
   <div class='track1 track2 hidden'>
     <%= form_tag("/create", method: "post", id: "new-tracking") do %>
       <%= text_field_tag(:q, nil, :placeholder => 'Enter USPS Tracking Number') %>
-      <%= submit_tag("Create", id: 'create-btn') %>
+      <%= submit_tag('', id: 'create-btn') %>
       <span id="spnTrNrStatus"></span>
     <% end %>
   </div>
