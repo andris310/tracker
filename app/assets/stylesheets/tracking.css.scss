@@ -217,8 +217,14 @@ z-index: 1;
   transition-duration: 0.4s;
 }
 
+p, span {
+  -webkit-font-smoothing: subpixel-antialiased;
+  // -webkit-text-stroke: 0.35px;
+}
+
 p.tr-detail {
   font-size: 1em;
+
 }
 
 .single-item {
@@ -401,4 +407,6 @@ form#new_user.new_user input#create-user {
 @media screen and (max-width: 400px) {
 
 }
+
+
 
