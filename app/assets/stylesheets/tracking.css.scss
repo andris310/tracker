@@ -267,8 +267,10 @@ p.tr-detail {
 }
 
 a.remove {
-  padding-right: .5em;
-  padding-left: .3em;
+  height: 1.2em;
+  width: 1em;
+  background: url(trash-white.svg);
+  background-size: 1.5em 1.2em;
 }
 
 a.remove span:hover {

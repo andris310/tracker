@@ -65,7 +65,7 @@ function getItems(link) {
         item.append($('<p class="number">' + num + '</p>'));
         item.append($('<hr/>'));
         item.append($('<span>' + summary + '</spna>'));
-        item.append($('<a class="remove"><span>X</span></a>'));
+        item.append($('<a class="remove"><span></span></a>'));
       });
     }
   });
