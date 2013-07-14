@@ -62,7 +62,8 @@ function getItems(link) {
         var item = $('<div class="item"></div>');
         list.append(item);
         item.attr('id', result['id']);
-        item.append($('<p class="number">' + num + '</p>'));
+        item.append($('<p class="number">' + num + '</p>' + '<a class="more-info"><span></span></a>'));
+        // item.append($('<a class="more-info"><span></span></a>'));
         item.append($('<hr/>'));
         item.append($('<span>' + summary + '</spna>'));
         item.append($('<a class="remove"><span></span></a>'));

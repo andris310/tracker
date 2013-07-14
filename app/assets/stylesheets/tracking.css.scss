@@ -273,8 +273,19 @@ a.remove {
   background-size: 1.5em 1.2em;
 }
 
-a.remove span:hover {
-  color: red;
+.more-info {
+  margin-right: .1em;
+  margin-top: -2em;
+  float: right;
+  cursor: pointer;
+  padding-right: 0.5em;
+}
+
+a.more-info {
+  height: 1.5em;
+  width: 1em;
+  background: url(info-white.svg);
+  background-size: 1.7em 1.5em;
 }
 
 .spinner, .spinner2 {
