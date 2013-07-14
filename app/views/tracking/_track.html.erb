@@ -11,7 +11,7 @@
   <div class='track1 new-number'>
     <%= form_tag("/showinfo", method: "get", id: "without-signin") do %>
       <%= text_field_tag(:q, nil, :placeholder => 'Enter USPS Tracking Number') %>
-      <%= submit_tag("Track", id: 'create-btn') %>
+      <%= submit_tag('', id: 'create-btn') %>
       <span id="spnTrNrStatus"></span>
     <% end %>
   </div>
