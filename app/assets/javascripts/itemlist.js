@@ -228,19 +228,28 @@ $(document).ready(function() {
 $('#item-list').on('click', '.more-info', function() {
   var item = $(this).parent();
   var id = item.attr('id');
-  $.ajax({
-    url: '/more-info',
-    method: 'get',
-    data: {q: id},
-    dataType: 'json',
-    success: function(results) {
-      var trackDetails = $('#track-detail-info');
-      trackDetails.html('');
-      $(results).each(function(index, detail) {
-        trackDetails.append($('<p class="tr-detail">' + detail.tracking_detail + '</p>'));
+  var trDetailsDiv = $('#track-detail-info');
+  trDetailsDiv.animate({
+        opacity: 0
+      }, 300, function() {
+          $.ajax({
+            url: '/more-info',
+            method: 'get',
+            data: {q: id},
+            dataType: 'json',
+            success: function(results) {
+              var trackDetails = $('#track-detail-info');
+              trackDetails.html('');
+              $(results).each(function(index, detail) {
+                trackDetails.append($('<p class="tr-detail">' + detail.tracking_detail + '</p>'));
+              });
+            }
+          });
       });
-    }
-  });
+
+  trDetailsDiv.animate({
+        opacity: 1
+      }, 300);
 });
 
   ////////// DELETE item //////////////
