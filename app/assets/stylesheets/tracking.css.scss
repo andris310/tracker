@@ -246,17 +246,31 @@ hr {
   color: white;
 }
 
-#item-list {
+#item-list, #track-detail-info {
   overflow: scroll;
-  height: 31em;
+  max-height: 31em;
 }
 
 #track-detail-info {
+  background-color: rgba(27, 179, 238, 0.82);
+  color: #FFF;
+  font-family: $font;
+  font-weight: 200;
+  padding: 7px;
+  margin-top: 4em;
+  margin-bottom: 1em;
+  width: 21em;
   position: relative;
   z-index: 100;
-  width: 22em;
-  float: right;
+  float: left;
+  opacity: 0;
+
+  p {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+  }
 }
+
 
 .track-details {
   margin-top: .5em;
