@@ -70,7 +70,7 @@ function getItems(link) {
       });
     }
   });
-}
+};
 
 ////  Tracking number Validation Criteria ////////
 
@@ -224,6 +224,9 @@ $(document).ready(function() {
     });
   });
 
+  ////////// GET DETAILED INFO ////////
+
+
 
   ////////// DELETE item //////////////
   $('#item-list').on('click', '.remove', function() {
@@ -305,6 +308,4 @@ $(document).ready(function() {
       }
     });
   });
-
-
 }); // end of doc ready

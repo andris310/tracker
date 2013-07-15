@@ -10,8 +10,13 @@ class TrackingController < ApplicationController
     render :json => item.to_json
   end
 
+  def more_info
+    @info = Detail.where(:user_id => current_user, :item_id => params[:q]).order('created_at DESC')
+    render :json => @info.to_json
+  end
+
   def list_in_transit
-    @items = Item.where(:user_id => current_user, :status => "In Transit").order("created_at DESC")
+    @items = Item.where(:user_id => current_user, :status => 'In Transit').order('created_at DESC')
     run_update(@items)
     render :json => @items.to_json
   end
