@@ -274,7 +274,7 @@ $('#item-list').on('click', '.more-info', function() {
   $('#without-signin').on('submit', function(event) {
     /// Center New Form for landing page
     var newNumber = $('.new-number');
-    newNumber.slideUp(200, function() {
+    newNumber.fadeOut({ duration: 200, queue: false }).slideUp(300, function() {
       newNumber.addClass('track2 hidden').removeClass('new-number');
     });
 
