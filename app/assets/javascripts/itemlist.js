@@ -19,6 +19,9 @@ function clearDetails() {
 }
 
 
+
+////// Get Details for Markers on the map ///////
+
 function getDetails(item) {
   clearDetails();
 
@@ -33,22 +36,24 @@ function getDetails(item) {
           .openPopup();
     latlngs.push([lat, lng]);
     markers.push(marker);
-    map.panTo([lat, lng], 9);
+    map.panTo([lat, lng], 5);
   });
   polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
-};
+}
 
 
+
+////// Get Items based on 'link' passed in ////////
 
 function getItems(link) {
   $.ajax({
     url: link,
     method: 'get',
     dataType: 'json',
-    beforeSend: function () {
+    beforeSend: function() {
       timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
     },
-    complete: function () {
+    complete: function() {
       clearTimeout(timer);
       $('.spinner').fadeOut();
     },
@@ -63,7 +68,6 @@ function getItems(link) {
         list.append(item);
         item.attr('id', result['id']);
         item.append($('<p class="number">' + num + '</p>' + '<a class="more-info"><span></span></a>'));
-        // item.append($('<a class="more-info"><span></span></a>'));
         item.append($('<hr/>'));
         item.append($('<span>' + summary + '</spna>'));
         item.append($('<a class="remove"><span></span></a>'));
@@ -71,6 +75,8 @@ function getItems(link) {
     }
   });
 };
+
+
 
 ////  Tracking number Validation Criteria ////////
 
@@ -126,9 +132,9 @@ $(document).ready(function() {
         data: {q: id},
         dataType: 'json',
         beforeSend: function () {
-        timer = setTimeout(function () { $('.spinner').fadeIn(); }, 100);
+        timer = setTimeout(function() { $('.spinner').fadeIn(); }, 100);
         },
-        complete: function () {
+        complete: function() {
           clearTimeout(timer);
           $('.spinner').fadeOut();
         },
@@ -147,18 +153,20 @@ $(document).ready(function() {
           item.append(hidden);
           getDetails(item);
         },
-        error: function () {
+        error: function() {
           $('.error').slideDown();
           setTimeout(function () { $('.error').slideUp(); }, 3000);
         }
       });
-    }; /// end of 'if' statement
+    } /// end of 'if' statement
     getDetails(item);
   });
 
+
+
 ////////// Tracking Number Validation /////////////
 
-  $('#q').bind('keyup blur', function(e) {
+  $('#q').bind('keyup blur', function() {
     var number = $('#spnTrNrStatus');
     var button = $('#create-btn');
     if (validateUspsTracking('q')) {
@@ -179,8 +187,6 @@ $(document).ready(function() {
 
 
 
-
-
 /////// Show or hide Add Tracking number field ///////
 
   $('#add-number').on('click', function() {
@@ -189,15 +195,17 @@ $(document).ready(function() {
         field.val('');
     if (input.hasClass('hidden')){
       input.removeClass('hidden');
-      input.hide().fadeIn(300)
-      // .css('width', '14.5em');
+      input.hide().fadeIn(300);
     } else {
       input.addClass('hidden');
       input.fadeOut(300);
-    };
+    }
   });
 
+
+
 ///// SAVING NEW item to the user account /////
+
   $('#new-tracking').on('submit', function(event) {
     event.preventDefault();
     var form = $(this);
@@ -208,7 +216,7 @@ $(document).ready(function() {
       data: {q: input},
       dataType: 'json',
       beforeSend: function() {
-      timer = setTimeout(function () { $('.spinner2').fadeIn(); }, 100);
+        timer = setTimeout(function () { $('.spinner2').fadeIn(); }, 100);
       },
       complete: function() {
         clearTimeout(timer);
@@ -224,7 +232,10 @@ $(document).ready(function() {
     });
   });
 
-  ////////// GET DETAILED INFO ////////
+
+
+////////// GET DETAILED INFO ////////
+
 $('#item-list').on('click', '.more-info', function() {
   var item = $(this).parent();
   var id = item.attr('id');
@@ -248,11 +259,14 @@ $('#item-list').on('click', '.more-info', function() {
       });
 
   trDetailsDiv.animate({
-        opacity: 1
-      }, 300);
+      opacity: 1
+    }, 300);
 });
 
-  ////////// DELETE item //////////////
+
+
+////////// DELETE item //////////////
+
   $('#item-list').on('click', '.remove', function() {
     event.preventDefault();
     var item = $(this).parent();
@@ -270,11 +284,12 @@ $('#item-list').on('click', '.more-info', function() {
   });
 
 
-  ///// DISPLAY single item without Login //////
+
+///// DISPLAY single item without Login //////
+
   $('#without-signin').on('submit', function(event) {
-    /// Center New Form for landing page
     var newNumber = $('.new-number');
-    newNumber.slideUp(200, function() {
+    newNumber.fadeOut({ duration: 200, queue: false }).slideUp(300, function() {
       newNumber.addClass('track2 hidden').removeClass('new-number');
     });
 
@@ -305,12 +320,11 @@ $('#item-list').on('click', '.more-info', function() {
         item.append($('<p>' + result["tracking_id"] + '</p>'));
         item.append($('<span>' + result["summary"] + '</span>'));
         item.append(hidden);
+        item.append(trackDetails);
 
         $(details).each(function(index, detail) {
           trackDetails.append($('<p class="tr-detail">' + detail + '</p>'));
         });
-
-        item.append(trackDetails);
 
         $(locations).each(function(index, detail) {
           var lat = detail[0];
@@ -326,7 +340,7 @@ $('#item-list').on('click', '.more-info', function() {
         getDetails(item);
         $('#map').removeClass('blur');
       },
-      error: function () {
+      error: function() {
         $('.error').slideDown();
         setTimeout(function () { $('.error').slideUp(); }, 3000);
       }
