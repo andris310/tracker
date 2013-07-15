@@ -11,7 +11,7 @@ class TrackingController < ApplicationController
   end
 
   def more_info
-    @info = Detail.where(:user_id => current_user, :item_id => params[:q]).order('created_at DESC')
+    @info = Detail.where(:item_id => params[:q]).order('created_at DESC')
     render :json => @info.to_json
   end
 

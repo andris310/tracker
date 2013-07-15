@@ -225,8 +225,23 @@ $(document).ready(function() {
   });
 
   ////////// GET DETAILED INFO ////////
-
-
+$('#item-list').on('click', '.more-info', function() {
+  var item = $(this).parent();
+  var id = item.attr('id');
+  $.ajax({
+    url: '/more-info',
+    method: 'get',
+    data: {q: id},
+    dataType: 'json',
+    success: function(results) {
+      var trackDetails = $('#track-detail-info');
+      trackDetails.html('');
+      $(results).each(function(index, detail) {
+        trackDetails.append($('<p class="tr-detail">' + detail.tracking_detail + '</p>'));
+      });
+    }
+  });
+});
 
   ////////// DELETE item //////////////
   $('#item-list').on('click', '.remove', function() {

@@ -251,6 +251,13 @@ hr {
   height: 31em;
 }
 
+#track-detail-info {
+  position: relative;
+  z-index: 100;
+  width: 22em;
+  float: right;
+}
+
 .track-details {
   margin-top: .5em;
   padding-top: .5em;
