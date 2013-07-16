@@ -251,6 +251,7 @@ $('#item-list').on('click', '.more-info', function() {
             success: function(results) {
               var trackDetails = $('#track-detail-info');
               trackDetails.html('');
+              trackDetails.append($('<span id="close-detail">X</span>'));
               $(results).each(function(index, detail) {
                 trackDetails.append($('<p class="tr-detail">' + detail.tracking_detail + '</p>'));
               });
@@ -261,6 +262,18 @@ $('#item-list').on('click', '.more-info', function() {
   trDetailsDiv.animate({
       opacity: 1
     }, 300);
+});
+
+
+
+////////// CLOSE DETAILED INFO //////
+
+$('#track-detail-info').on('click', '#close-detail', function() {
+  var tdi = $('#track-detail-info');
+  tdi.animate({
+    'opacity': 0}, 300, function() {
+      tdi.html('');
+    });
 });
 
 

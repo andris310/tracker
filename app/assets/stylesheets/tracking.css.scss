@@ -369,6 +369,12 @@ a.more-info {
 outline: none;
 }
 
+#close-detail {
+  cursor: pointer;
+  float: right;
+  margin-top: -.4em;
+}
+
 /*------------------------------------
           NEW USER/SIGN IN
 ------------------------------------*/
@@ -392,20 +398,27 @@ outline: none;
 }
 
 form#new_user input {
-  height: 3em;
+  height: 2em;
+  font-size: 1.1em;
   width: 100%;
   margin-top: 0;
   background-color: #F5F5F5;
   border: none;
-  color: #5688BE;
+  color: #FC8560;
 
 }
 
 form#new_user.new_user input#create-user {
-  margin-top: 2em;
-  font-size: .8em;
+  cursor: pointer;
+  margin-top: 1em;
+  font-size: 1.1em;
   background-color: #FC8560;
   color: #FFF;
+}
+
+input#create-user {
+  font-size: 0.9em;
+  height: 2.2em;
 }
 
 
@@ -430,6 +443,9 @@ form#new_user.new_user input#create-user {
 #back {
   background: url("map.png");
   height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
   position: absolute;
   top: 0;
   right: 0;
