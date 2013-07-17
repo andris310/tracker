@@ -14,6 +14,7 @@ Tracker::Application.routes.draw do
   get '/details', to: 'tracking#item_details'
   get '/showinfo', to: 'tracking#show'
   get '/more-info', to: 'tracking#more_info'
+  get '/count', to: 'tracking#item_count'
   delete '/delete', to: 'tracking#destroy'
 
 

@@ -49,6 +49,13 @@ class TrackingController < ApplicationController
     # render :json => @items.to_json
   end
 
+  def item_count
+    count_all = Item.where(:user_id => current_user).count
+    count_delivered = Item.where(:user_id => current_user, :delivered => true).count
+    count_intransit = Item.where(:user_id => current_user, :status => "In Transit").count
+    render :json => {'all' => count_all, 'delivered' => count_delivered, 'intransit' => count_intransit}
+  end
+
   def create_item
     @item = Item.find_by_tracking_id(params[:q])
     if @item.nil?
