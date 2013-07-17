@@ -135,9 +135,9 @@ $(document).ready(function() {
 //// Load Delivered items on initial page load //////
   getItems('/delivered');
 
-  $('#in-transit').on('click', function(){getItems('/in-transit')});
-  $('#delivered').on('click', function(){getItems('/delivered')});
-  $('#all').on('click', function(){getItems('/all')});
+  $('#in-transit').on('click', function() {getItems('/in-transit')});
+  $('#delivered').on('click', function() {getItems('/delivered')});
+  $('#all').on('click', function() {getItems('/all')});
 
   $('#item-list').on('click', '.item', function() {
     var item = $(this);
