@@ -43,6 +43,28 @@ function getDetails(item) {
 
 
 
+////// Count of all Item categories /////////
+function countItems() {
+  $.ajax({
+    url: '/count',
+    method: 'get',
+    dataType: 'json',
+    success: function(count) {
+      var c_all = $('#c-all');
+      var c_delivered = $('#c-delivered');
+      var c_intransit = $('#c-intransit');
+      c_all.html('');
+      c_delivered.html('');
+      c_intransit.html('');
+      c_all.append('[' + count.allitems + ']');
+      c_delivered.append('[' + count.delivered + ']');
+      c_intransit.append('[' + count.intransit + ']');
+    }
+  });
+}
+
+
+
 ////// Get Items based on 'link' passed in ////////
 
 function getItems(link) {
@@ -109,7 +131,8 @@ function validateUspsTracking (tracking_nr) {
 
 
 $(document).ready(function() {
-
+  countItems();
+//// Load Delivered items on initial page load //////
   getItems('/delivered');
 
   $('#in-transit').on('click', function(){getItems('/in-transit')});
@@ -120,10 +143,13 @@ $(document).ready(function() {
     var item = $(this);
     var id = item.attr('id');
     var map = $('#map');
+    var trackDetails = $('#track-detail-info');
 
     if (map.hasClass('blur')) {
       map.removeClass('blur');
     };
+
+    trackDetails.html('').css('opacity', 0);
 
     if (!(item.has('.hidden-data').length > 0)) {
       $.ajax({
@@ -230,6 +256,7 @@ $(document).ready(function() {
         setTimeout(function () { $('.error').slideUp(); }, 3000);
       }
     });
+    countItems();
   });
 
 
@@ -294,6 +321,7 @@ $('#track-detail-info').on('click', '#close-detail', function() {
         clearDetails();
       }
     }); //end of AJAX
+    countItems();
   });
 
 
