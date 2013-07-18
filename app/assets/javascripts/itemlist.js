@@ -147,7 +147,7 @@ $(document).ready(function() {
 
     if (map.hasClass('blur')) {
       map.removeClass('blur');
-    };
+    }
 
     trackDetails.html('').css('opacity', 0);
 
